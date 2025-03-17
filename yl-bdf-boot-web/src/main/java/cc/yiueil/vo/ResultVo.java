@@ -2,8 +2,8 @@ package cc.yiueil.vo;
 
 import cc.yiueil.enums.ResultCode;
 import cc.yiueil.lang.instance.CodeStatus;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,27 +17,27 @@ import java.util.Arrays;
  * @version 1.0
  */
 @Getter
-@ApiModel(value = "标准返回视图对象")
+@Schema(title = "标准返回视图对象")
 @NoArgsConstructor
 public class ResultVo implements Serializable {
     private static final long serialVersionUID = -5220502988169199802L;
 
-    @ApiModelProperty(value = "应用响应状态码")
+    @Schema(name ="应用响应状态码")
     private Integer statusCode;
 
-    @ApiModelProperty(value = "接口返回状态信息")
+    @Schema(name ="接口返回状态信息")
     private String statusMsg;
 
-    @ApiModelProperty(value = "错误请求栈信息(错误时必须)")
+    @Schema(name ="错误请求栈信息(错误时必须)")
     private String stackTrace;
 
-    @ApiModelProperty(value = "接口提示信息")
+    @Schema(name ="接口提示信息")
     private String tips;
 
-    @ApiModelProperty(value = "返回结果体")
+    @Schema(name ="返回结果体")
     private Object body;
 
-    @ApiModelProperty(value = "新令牌")
+    @Schema(name ="新令牌")
     private String token;
 
     private ResultVo(CodeStatus codeStatus, String tips, String stackTrace, Object body) {

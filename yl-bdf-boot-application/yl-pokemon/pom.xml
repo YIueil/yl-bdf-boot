@@ -30,6 +30,12 @@
             <artifactId>yl-bdf-boot-web</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>cc.yiueil</groupId>
+            <artifactId>yl-bdf-boot-swagger</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

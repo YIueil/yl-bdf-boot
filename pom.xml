@@ -13,7 +13,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-boot.version>2.7.6</spring-boot.version>
-        <swagger-api.version>1.5.20</swagger-api.version>
+        <springdoc.version>1.8.0</springdoc.version>
+        <swagger-annotations.version>2.2.20</swagger-annotations.version>
     </properties>
 
     <modules>
@@ -22,6 +23,7 @@
         <module>yl-bdf-boot-web</module>
         <module>yl-bdf-boot-application</module>
         <module>yl-bdf-boot-jpa</module>
+        <module>yl-bdf-boot-swagger</module>
     </modules>
 
     <dependencies>
@@ -50,11 +52,11 @@
                 <artifactId>yl-bdf-boot-start</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
-            <!--swagger-api-->
+            <!--swagger-annotations-->
             <dependency>
-                <groupId>io.swagger</groupId>
+                <groupId>io.swagger.core.v3</groupId>
                 <artifactId>swagger-annotations</artifactId>
-                <version>1.5.20</version>
+                <version>${swagger-annotations.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
