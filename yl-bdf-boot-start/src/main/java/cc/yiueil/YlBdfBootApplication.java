@@ -1,4 +1,4 @@
-package cc.yiueil.starter;
+package cc.yiueil;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
