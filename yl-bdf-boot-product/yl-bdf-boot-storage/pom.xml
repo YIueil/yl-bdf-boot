@@ -7,18 +7,28 @@
         <groupId>cc.yiueil</groupId>
         <artifactId>yl-bdf-boot</artifactId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>yl-bdf-boot-application</artifactId>
-    <description>存放一些示例的项目</description>
-    <modules>
-        <module>yl-pokemon</module>
-    </modules>
+    <artifactId>yl-bdf-boot-storage</artifactId>
     <packaging>pom</packaging>
+    <description>存储父项目</description>
+    <modules>
+        <module>yl-bdf-boot-storage-image-host</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>cc.yiueil</groupId>
+            <artifactId>yl-bdf-boot-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
 </project>

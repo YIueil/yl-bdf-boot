@@ -1,6 +1,5 @@
 package cc.yiueil.data;
 
-import cc.yiueil.context.RequestContextThreadLocal;
 import cc.yiueil.lang.instance.HasOwn;
 
 /**

@@ -5,20 +5,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cc.yiueil</groupId>
-        <artifactId>yl-bdf-boot</artifactId>
+        <artifactId>yl-bdf-boot-storage</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>yl-bdf-boot-application</artifactId>
-    <description>存放一些示例的项目</description>
-    <modules>
-        <module>yl-pokemon</module>
-    </modules>
-    <packaging>pom</packaging>
+    <artifactId>yl-bdf-boot-storage-image-host</artifactId>
+    <description>图床项目</description>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
 </project>
