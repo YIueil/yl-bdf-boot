@@ -3,7 +3,7 @@ package cc.yiueil.controller;
 import cc.yiueil.api.ImageResource;
 import cc.yiueil.entity.result.UploadResult;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @Slf4j
-@Schema(title = "APP-测试")
+@Tag(name = "APP-测试")
 @RestController
 @RequestMapping(value = "test")
 public class TestController implements BaseController {
