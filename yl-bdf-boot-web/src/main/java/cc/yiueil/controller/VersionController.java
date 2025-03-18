@@ -27,4 +27,11 @@ public class VersionController implements BaseController{
     public String statusCode(){
         return success(Arrays.stream(ResultCode.values()).map(ResultCode::toString).collect(Collectors.toList()));
     }
+
+    @Operation(description = "错误测试")
+    @GetMapping(value = "errorTest")
+    public String errorTest(){
+        throw new RuntimeException("一个示例的运行时错误");
+    }
+
 }

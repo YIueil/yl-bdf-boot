@@ -1,2 +1,8 @@
-server:
-  port: 7777
+spring:
+  profiles:
+    group:
+      local: local, local-db
+      dev: dev
+    active: local
+  application:
+    name: yl-pokemon
