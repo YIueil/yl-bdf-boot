@@ -6,3 +6,6 @@ spring:
     active: local
   application:
     name: yl-pokemon
+  servlet:
+    multipart:
+      max-file-size: 10MB

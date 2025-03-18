@@ -1,10 +1,15 @@
-package cc.yiueil.util;
+package cc.yiueil.util.ext;
 
+import cc.yiueil.util.ArrayUtils;
+import cc.yiueil.util.ObjectUtils;
+import ch.qos.logback.classic.spi.IThrowableProxy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
 
 import java.io.IOException;
+import java.util.Optional;
 import java.util.Properties;
+import java.util.function.Supplier;
 
 /**
  * GlobalProperties 全局配置属性类
@@ -77,7 +82,7 @@ public class GlobalProperties {
     }
 
     /**
-     * 全局获取配置项
+     * 全局获取配置项, 不存在使用默认值
      *
      * @param key          键值
      * @param defaultValue 默认值
@@ -88,5 +93,18 @@ public class GlobalProperties {
             load(null);
         }
         return ObjectUtils.defaultIfNull(globalProperties.getProperty(key), defaultValue);
+    }
+
+    /**
+     * 全局获取配置项, 不存在时报错
+     *
+     * @param key          键值
+     * @return value
+     */
+    public static <X extends Throwable> String getPropertiesOrElseThrow(String key, Supplier<? extends X> exceptionSupplier) throws X {
+        if (!load) {
+            load(null);
+        }
+        return Optional.ofNullable(globalProperties.getProperty(key)).orElseThrow(exceptionSupplier);
     }
 }

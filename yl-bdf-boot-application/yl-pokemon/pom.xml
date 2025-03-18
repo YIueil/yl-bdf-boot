@@ -43,6 +43,13 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
+        <!--图床存储服务-->
+        <dependency>
+            <groupId>cc.yiueil</groupId>
+            <artifactId>yl-bdf-boot-storage-image-host</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
         <!--项目自身依赖-->
         <dependency>
             <groupId>org.postgresql</groupId>

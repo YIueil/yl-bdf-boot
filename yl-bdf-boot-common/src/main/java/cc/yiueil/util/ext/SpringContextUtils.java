@@ -1,4 +1,4 @@
-package cc.yiueil.util;
+package cc.yiueil.util.ext;
 
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
