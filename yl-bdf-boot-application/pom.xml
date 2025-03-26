@@ -13,6 +13,7 @@
     <description>存放一些示例的项目</description>
     <modules>
         <module>yl-pokemon</module>
+        <module>yl-excalibur</module>
     </modules>
     <packaging>pom</packaging>
 
