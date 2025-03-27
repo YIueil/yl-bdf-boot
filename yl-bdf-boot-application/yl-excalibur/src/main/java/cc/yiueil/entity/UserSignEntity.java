@@ -24,10 +24,10 @@ public class UserSignEntity implements BaseEntity<Long> {
     @Column(columnDefinition = "签到日期")
     private LocalDate date;
 
-    @Column(name = "sign_in_time", columnDefinition = "签到时间")
+    @Column(name = "sign_in_time")
     private LocalDateTime signInTime;
 
-    @Column(name = "location", columnDefinition = "位置")
+    @Column(name = "location")
     private String location;
 
     @Column(name = "remarks")
