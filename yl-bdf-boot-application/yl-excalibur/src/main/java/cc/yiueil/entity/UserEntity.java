@@ -2,7 +2,6 @@ package cc.yiueil.entity;
 
 import cc.yiueil.lang.instance.BaseEntity;
 import lombok.Data;
-import lombok.Generated;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -21,6 +20,9 @@ public class UserEntity implements BaseEntity<Long> {
 
     @Column(name = "username")
     private String username;
+
+    @Column(name = "login_name")
+    private String loginName;
 
     @Column(name = "password")
     private String password;

@@ -35,6 +35,13 @@ public class UserController implements BaseController {
 
     @DeleteMapping("user/{guid}")
     public String deleteUser(@PathVariable String guid) {
+        userService.deleteUser(guid);
+        return success();
+    }
+
+    @PostMapping("user/{guid}/checkin")
+    public String checkInUser(@PathVariable String guid) {
+        userService.incrSignDays(guid);
         return success();
     }
 }

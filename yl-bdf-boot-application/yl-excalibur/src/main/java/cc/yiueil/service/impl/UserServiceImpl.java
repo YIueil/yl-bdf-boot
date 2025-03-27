@@ -5,17 +5,26 @@ import cc.yiueil.data.impl.JpaBaseDao;
 import cc.yiueil.dto.UserDTO;
 import cc.yiueil.dto.UserRegDTO;
 import cc.yiueil.entity.UserEntity;
+import cc.yiueil.entity.UserSignEntity;
+import cc.yiueil.exception.BusinessException;
+import cc.yiueil.repository.UserSignRepository;
 import cc.yiueil.service.UserService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
     JpaBaseDao baseDao;
+
+    @Autowired
+    UserSignRepository userSignRepository;
 
     @Autowired
     UserConvert userConvert;
@@ -30,7 +39,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public UserDTO getUserByGuid(String guid) {
         UserEntity userEntity = baseDao.findByGuid(UserEntity.class, guid).orElseThrow(EntityNotFoundException::new);
         return userConvert.toUserDTO(userEntity);
@@ -43,5 +52,33 @@ public class UserServiceImpl implements UserService {
         userConvert.dtoMapEntity(userDTO, userEntity);
         // 最后保存覆盖后的 entity
         baseDao.save(userEntity);
+    }
+
+    @Override
+    @Transactional
+    public void deleteUser(String guid) {
+        baseDao.deleteByGuid(UserEntity.class, guid);
+    }
+
+    @Override
+    @Transactional
+    public void incrSignDays(String guid) {
+        userSignRepository.findFirstByFkUserGuid(guid).ifPresent(userSignEntity -> {
+            throw new BusinessException("今日已签到");
+        });
+        UserEntity userEntity = baseDao.findByGuid(UserEntity.class, guid).orElseThrow(EntityNotFoundException::new);
+        userEntity.setSignDays(userEntity.getSignDays() + 1);
+        baseDao.save(userEntity);
+        UserSignEntity userSignEntity = getUserSignEntity(userEntity);
+        baseDao.save(userSignEntity);
+    }
+
+    @NotNull
+    private static UserSignEntity getUserSignEntity(UserEntity userEntity) {
+        UserSignEntity userSignEntity = new UserSignEntity();
+        userSignEntity.setFkUserGuid(userEntity.getGuid());
+        userSignEntity.setDate(LocalDate.now());
+        userSignEntity.setSignInTime(LocalDateTime.now());
+        return userSignEntity;
     }
 }

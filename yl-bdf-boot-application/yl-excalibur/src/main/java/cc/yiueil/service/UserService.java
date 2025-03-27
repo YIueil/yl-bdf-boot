@@ -10,4 +10,8 @@ public interface UserService {
     UserDTO getUserByGuid(String guid);
 
     void updateUser(String guid, UserDTO userDTO);
+
+    void deleteUser(String guid);
+
+    void incrSignDays(String guid);
 }
