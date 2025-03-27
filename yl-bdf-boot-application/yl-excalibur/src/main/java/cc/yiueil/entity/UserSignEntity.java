@@ -21,8 +21,8 @@ public class UserSignEntity implements BaseEntity<Long> {
     @Column(name = "fk_user_guid")
     private String fkUserGuid;
 
-    @Column(columnDefinition = "签到日期")
-    private LocalDate date;
+    @Column(name = "sign_in_date")
+    private LocalDate signInDate;
 
     @Column(name = "sign_in_time")
     private LocalDateTime signInTime;

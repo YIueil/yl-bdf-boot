@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService {
     private static UserSignEntity getUserSignEntity(UserEntity userEntity) {
         UserSignEntity userSignEntity = new UserSignEntity();
         userSignEntity.setFkUserGuid(userEntity.getGuid());
-        userSignEntity.setDate(LocalDate.now());
+        userSignEntity.setSignInDate(LocalDate.now());
         userSignEntity.setSignInTime(LocalDateTime.now());
         return userSignEntity;
     }
