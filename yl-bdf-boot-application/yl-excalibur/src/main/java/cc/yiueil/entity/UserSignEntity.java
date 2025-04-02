@@ -11,11 +11,14 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "t_user_sign")
 public class UserSignEntity implements BaseEntity<Long> {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generator")
-    @SequenceGenerator(name = "generator", sequenceName = "s_user_sign", allocationSize = 1)
+    @SequenceGenerator(name = "userSignEntityGenerator", sequenceName = "s_user_sign", allocationSize = 1)
     private Long id;
 
+    @Column(name = "guid")
     private String guid;
 
     @Column(name = "fk_user_guid")

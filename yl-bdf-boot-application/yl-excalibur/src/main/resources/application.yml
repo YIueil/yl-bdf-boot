@@ -9,3 +9,12 @@ spring:
   jpa:
     generate-ddl: true
     show-sql: true
+  task:
+    scheduling:
+      thread-name-prefix: scheduler-
+      pool:
+        size: 2
+logging:
+  level:
+    cc.yiueil: debug
+    web: debug

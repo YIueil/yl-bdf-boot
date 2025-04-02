@@ -8,35 +8,29 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "t_user")
-public class UserEntity implements BaseEntity<Long> {
+@Table(name = "t_user_pick_gift_code")
+public class UserPickGiftCodeEntity implements BaseEntity<Long> {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generator")
-    @SequenceGenerator(name = "userEntityGenerator", sequenceName = "s_user", allocationSize = 1)
+    @SequenceGenerator(name = "userPickGiftCodeEntityGenerator", sequenceName = "s_user_pick_gift_code", allocationSize = 1)
     private Long id;
 
     @Column(name = "guid")
     private String guid;
 
-    @Column(name = "username")
-    private String username;
+    @Column(name = "fk_user_guid")
+    private String fkUserGuid;
 
-    @Column(name = "login_name")
-    private String loginName;
+    @Column(name = "fk_gift_code_guid")
+    private String fkGiftCodeGuid;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "pick_time")
+    private LocalDateTime pickTime;
 
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "balance")
-    private Long balance;
-
-    @Column(name = "sign_days")
-    private Long signDays;
+    @Column(name = "pick_result")
+    private Boolean pickResult;
 
     @Column(name = "create_user_id")
     private Long createUserId;

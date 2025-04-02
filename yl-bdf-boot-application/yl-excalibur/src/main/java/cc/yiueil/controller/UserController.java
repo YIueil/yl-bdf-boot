@@ -11,35 +11,36 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @Tag(name = "APP-用户")
 @RestController
+@RequestMapping(value = "/user")
 public class UserController implements BaseController {
     @Autowired
     UserService userService;
 
-    @PostMapping("user")
+    @PostMapping
     public String createUser(@RequestBody UserRegDTO userRegDTO) {
         UserDTO userDTO = userService.createUser(userRegDTO);
         return success(userDTO);
     }
 
-    @GetMapping("user/{guid}")
+    @GetMapping("/{guid}")
     public String getUserByGuid(@PathVariable String guid) {
         UserDTO userDTO = userService.getUserByGuid(guid);
         return success(userDTO);
     }
 
-    @PutMapping("user/{guid}")
+    @PutMapping("/{guid}")
     public String updateUser(@PathVariable String guid, @RequestBody UserDTO userDTO) {
         userService.updateUser(guid, userDTO);
         return success();
     }
 
-    @DeleteMapping("user/{guid}")
+    @DeleteMapping("/{guid}")
     public String deleteUser(@PathVariable String guid) {
         userService.deleteUser(guid);
         return success();
     }
 
-    @PostMapping("user/{guid}/checkin")
+    @PostMapping("/{guid}/checkin")
     public String checkInUser(@PathVariable String guid) {
         userService.incrSignDays(guid);
         return success();
