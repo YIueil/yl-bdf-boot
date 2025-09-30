@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>yl-bdf-boot-product</artifactId>
-    <description>产品夫父项目</description>
+    <description>产品父项目</description>
     <packaging>pom</packaging>
 
     <properties>

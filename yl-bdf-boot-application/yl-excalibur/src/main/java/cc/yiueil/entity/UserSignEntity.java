@@ -2,15 +2,21 @@ package cc.yiueil.entity;
 
 import cc.yiueil.lang.instance.BaseEntity;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "t_user_sign")
-public class UserSignEntity implements BaseEntity<Long> {
+public class UserSignEntity implements BaseEntity<Long>, Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
