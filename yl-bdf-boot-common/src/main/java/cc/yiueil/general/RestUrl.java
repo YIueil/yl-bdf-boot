@@ -7,5 +7,5 @@ package cc.yiueil.general;
  * @version 1.0
  */
 public interface RestUrl {
-    String BASE_PATH = "/bdf-web";
+    String BASE_PATH = "/bdf-boot";
 }

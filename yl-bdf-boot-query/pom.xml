@@ -5,17 +5,18 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cc.yiueil</groupId>
-        <artifactId>yl-bdf-boot-product</artifactId>
+        <artifactId>yl-bdf-boot</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>yl-bdf-boot-storage</artifactId>
+    <artifactId>yl-bdf-boot-query</artifactId>
+
+    <description>查询模块父项目</description>
+
     <packaging>pom</packaging>
-    <description>存储父项目</description>
+
     <modules>
-        <module>yl-bdf-boot-storage-core</module>
-        <module>yl-bdf-boot-storage-web</module>
+        <module>yl-bdf-boot-jpa</module>
     </modules>
 
     <properties>
@@ -23,13 +24,5 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>cc.yiueil</groupId>
-            <artifactId>yl-bdf-boot-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
 
 </project>

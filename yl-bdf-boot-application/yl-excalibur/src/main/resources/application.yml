@@ -2,7 +2,7 @@ server:
   port: 45432
 spring:
   datasource:
-    url: jdbc:postgresql://47.109.40.4:5432/mhmnz?currentSchema=public
+    url: jdbc:postgresql://47.109.40.4:65432/mhmnz?currentSchema=public
     username: postgres
     password:
     driver-class-name: org.postgresql.Driver

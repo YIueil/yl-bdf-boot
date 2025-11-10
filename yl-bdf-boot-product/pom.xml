@@ -12,6 +12,10 @@
     <artifactId>yl-bdf-boot-product</artifactId>
     <description>产品父项目</description>
     <packaging>pom</packaging>
+    <modules>
+        <module>yl-bdf-boot-activiti</module>
+        <module>yl-bdf-boot-storage</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

@@ -22,13 +22,10 @@
         <module>yl-bdf-boot-common</module>
         <module>yl-bdf-boot-web</module>
         <module>yl-bdf-boot-application</module>
-        <module>yl-bdf-boot-jpa</module>
         <module>yl-bdf-boot-swagger</module>
         <module>yl-bdf-boot-security</module>
         <module>yl-bdf-boot-product</module>
-        <module>yl-bdf-boot-product/yl-bdf-boot-activiti</module>
-        <module>yl-bdf-boot-product/yl-bdf-boot-flowable</module>
-        <module>yl-bdf-boot-product/yl-bdf-boot-storage</module>
+        <module>yl-bdf-boot-query</module>
     </modules>
 
     <dependencies>

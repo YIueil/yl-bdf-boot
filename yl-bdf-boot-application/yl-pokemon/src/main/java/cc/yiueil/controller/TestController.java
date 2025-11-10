@@ -1,6 +1,7 @@
 package cc.yiueil.controller;
 
 import cc.yiueil.api.ImageResource;
+import cc.yiueil.entity.result.ImageUploadResult;
 import cc.yiueil.entity.result.UploadResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -28,7 +29,7 @@ public class TestController implements BaseController {
     public String imageUpload(
             @RequestPart("multipartFile") MultipartFile multipartFile) {
         try {
-            UploadResult uploadResult = imageResource.upload(multipartFile.getInputStream(), multipartFile.getOriginalFilename(), multipartFile.getContentType());
+            ImageUploadResult uploadResult = imageResource.upload(multipartFile.getInputStream(), multipartFile.getOriginalFilename(), multipartFile.getContentType());
             return success(uploadResult);
         } catch (IOException e) {
             log.error(e.getMessage(), e);
