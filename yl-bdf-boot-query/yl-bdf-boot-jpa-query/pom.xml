@@ -5,16 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cc.yiueil</groupId>
-        <artifactId>yl-bdf-boot</artifactId>
+        <artifactId>yl-bdf-boot-query</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>yl-bdf-boot-product</artifactId>
-    <description>产品父项目</description>
-    <packaging>pom</packaging>
-    <modules>
-        <module>yl-bdf-boot-storage</module>
-    </modules>
+    <artifactId>yl-bdf-boot-jpa-query</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -22,4 +17,17 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>cc.yiueil</groupId>
+            <artifactId>yl-bdf-boot-web</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cc.yiueil</groupId>
+            <artifactId>yl-bdf-boot-jpa</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

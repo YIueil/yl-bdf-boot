@@ -40,6 +40,19 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
 
+        <!--dom4j-->
+        <dependency>
+            <groupId>org.dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>${dom4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jaxen</groupId>
+            <artifactId>jaxen</artifactId>
+            <version>${jaxen.version}</version>
+        </dependency>
+
+
         <!--json-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

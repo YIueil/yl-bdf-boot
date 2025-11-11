@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.yiueil.cc"
+           elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="root" type="rootType"/>
+  <xs:complexType name="rootType">
+    <xs:sequence>
+      <xs:element type="configType" name="config" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="cache" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="configType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="sql"/>
+      <xs:element type="paramsType" name="params"/>
+      <xs:element type="filtersType" name="filters"/>
+      <xs:element type="xs:string" name="endSql"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="id" use="required"/>
+    <xs:attribute type="xs:string" name="description"/>
+  </xs:complexType>
+  <xs:complexType name="paramType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="name" use="required"/>
+        <xs:attribute type="xs:string" name="default"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="paramsType">
+    <xs:sequence>
+      <xs:element type="paramType" name="param"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="filterType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="name" use="required"/>
+        <xs:attribute type="xs:string" name="left"/>
+        <xs:attribute type="xs:string" name="right"/>
+        <xs:attribute type="xs:string" name="type"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="filtersType">
+    <xs:sequence>
+      <xs:element type="filterType" name="filter"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

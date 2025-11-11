@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!ELEMENT root (config)*><!--根节点-->
+<!ATTLIST root
+        cache (true|false) "false">
+
+<!ELEMENT config (sql|params|filters|endSql)*><!--配置项-->
+<!ATTLIST config
+        id ID #REQUIRED
+        description CDATA #IMPLIED>
+
+<!ELEMENT sql (#PCDATA)>
+
+<!ELEMENT params (param)*><!--内嵌参数列表-->
+<!ELEMENT param (#PCDATA)>
+<!ATTLIST param
+        name CDATA #REQUIRED
+        default CDATA #IMPLIED>
+
+<!ELEMENT filters (filter)*><!--过滤参数列表-->
+<!ELEMENT filter (#PCDATA)>
+<!ATTLIST filter
+        name CDATA #REQUIRED>
+        left CDATA #IMPLIED>
+        right CDATA #IMPLIED>
+        type CDATA #IMPLIED>
+
+<!ELEMENT endSql (#PCDATA)><!--尾接SQL-->

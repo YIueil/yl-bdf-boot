@@ -17,6 +17,7 @@
 
     <modules>
         <module>yl-bdf-boot-jpa</module>
+        <module>yl-bdf-boot-jpa-query</module>
     </modules>
 
     <properties>
