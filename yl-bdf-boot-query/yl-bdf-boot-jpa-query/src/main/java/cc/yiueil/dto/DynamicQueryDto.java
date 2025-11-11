@@ -1,8 +1,7 @@
 package cc.yiueil.dto;
 
 import cc.yiueil.query.DynamicQueryConfig;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,22 +21,22 @@ import java.util.Map;
 @Setter
 @ToString
 @NoArgsConstructor
-@ApiModel(value = "动态查询参数")
+@Schema(name = "动态查询参数")
 public class DynamicQueryDto {
     @NotNull
-    @ApiModelProperty(value = "查询服务配置的id")
+    @Schema(name = "查询服务配置的id")
     private String configId;
 
-    @ApiModelProperty(value = "查询配置服务的文件名")
+    @Schema(name = "查询配置服务的文件名")
     private String configFile;
 
-    @ApiModelProperty(value = "查询配置服务所在的路径")
+    @Schema(name = "查询配置服务所在的路径")
     private String configPath;
 
-    @ApiModelProperty(value = "查询的过滤条件")
+    @Schema(name = "查询的过滤条件")
     private Map<String, Object> filter;
 
-    @ApiModelProperty(value = "查询配置")
+    @Schema(name = "查询配置")
     private DynamicQueryConfig config;
 
     public DynamicQueryDto(String configPath, String configFile, String configId) {
