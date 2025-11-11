@@ -20,7 +20,7 @@
     </properties>
 
     <modules>
-        <module>yl-bdf-spring-boot-starter</module>
+        <module>yl-bdf-boot-starter</module>
         <module>yl-bdf-boot-common</module>
         <module>yl-bdf-boot-web</module>
         <module>yl-bdf-boot-application</module>
@@ -54,7 +54,7 @@
             </dependency>
             <dependency>
                 <groupId>cc.yiueil</groupId>
-                <artifactId>yl-bdf-spring-boot-starter</artifactId>
+                <artifactId>yl-bdf-boot-starter</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <!--swagger-annotations-->

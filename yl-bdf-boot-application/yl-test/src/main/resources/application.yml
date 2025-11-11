@@ -1,5 +1,6 @@
 server:
   port: 8989
 yiueil:
-  prefix: 你好1
-  suffix: 再见1
+  hello:
+    prefix: 你好1
+    suffix: 再见1

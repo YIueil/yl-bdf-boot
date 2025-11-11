@@ -8,38 +8,14 @@
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>yl-bdf-spring-boot-starter</artifactId>
-    <name>yl-bdf-spring-boot-starter</name>
+    <artifactId>yl-bdf-boot-starter</artifactId>
+    <name>yl-bdf-boot-starter</name>
     <modules>
         <module>yl-bdf-spring-boot-autoconfigure</module>
+        <module>yl-bdf-spring-boot-starter</module>
     </modules>
     <packaging>pom</packaging>
     <description>启动器模块</description>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>cc.yiueil</groupId>
-            <artifactId>yl-bdf-boot-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cc.yiueil</groupId>
-            <artifactId>yl-bdf-boot-web</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
 
     <build>
         <plugins>
