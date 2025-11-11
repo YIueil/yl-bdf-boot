@@ -23,17 +23,5 @@
             <artifactId>yl-bdf-spring-boot-autoconfigure</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
-        <dependency>
-            <groupId>cc.yiueil</groupId>
-            <artifactId>yl-bdf-boot-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cc.yiueil</groupId>
-            <artifactId>yl-bdf-boot-web</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 </project>
