@@ -4,10 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class YlBdfBootApplication {
-
+public class BootApplication {
     public static void main(String[] args) {
-        SpringApplication.run(YlBdfBootApplication.class, args);
+        SpringApplication.run(BootApplication.class, args);
     }
-
 }

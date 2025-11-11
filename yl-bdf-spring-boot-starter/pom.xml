@@ -8,9 +8,14 @@
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>yl-bdf-boot-start</artifactId>
-    <name>yl-bdf-boot-start</name>
-    <description>入口模块，引导工程启动以及基础配置</description>
+    <artifactId>yl-bdf-spring-boot-starter</artifactId>
+    <name>yl-bdf-spring-boot-starter</name>
+    <modules>
+        <module>yl-bdf-spring-boot-autoconfigure</module>
+    </modules>
+    <packaging>pom</packaging>
+    <description>启动器模块</description>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
