@@ -1,7 +1,6 @@
 package cc.yiueil.query;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,8 +12,8 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@ApiModel(value = "动态查询配置")
+@Schema(name = "动态查询配置")
 public class DynamicQueryConfig {
-    @ApiModelProperty(value = "结果集转大写")
+    @Schema(name = "结果集转大写")
     private Boolean toUpperCase = false;
 }

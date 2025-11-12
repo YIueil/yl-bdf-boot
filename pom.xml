@@ -8,6 +8,40 @@
     <packaging>pom</packaging>
     <name>yl-bdf-boot</name>
     <description>yl-bdf project for Spring Boot</description>
+
+    <developers>
+        <developer>
+            <name>yiueil</name>
+            <email>yiueil@163.com</email>
+            <organization>nameless</organization>
+            <organizationUrl>https://www.yiueil.cc</organizationUrl>
+        </developer>
+    </developers>
+
+    <!-- 构建包仓库发布模式 -->
+    <profiles>
+        <profile>
+            <id>snapshot</id>
+            <distributionManagement>
+                <repository>
+                    <id>local-repo-snapshot</id>
+                    <name>本地发布仓库地址</name>
+                    <url>file://${basedir}/maven-repo</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+        <profile>
+            <id>release</id>
+            <distributionManagement>
+                <repository>
+                    <id>github-repo</id>
+                    <name>GitHub Apache Maven Packages</name>
+                    <url>https://maven.pkg.github.com/YIueil/yl-bdf-boot</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+    </profiles>
+
     <properties>
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -23,7 +57,6 @@
         <module>yl-bdf-boot-starter</module>
         <module>yl-bdf-boot-common</module>
         <module>yl-bdf-boot-web</module>
-        <module>yl-bdf-boot-application</module>
         <module>yl-bdf-boot-swagger</module>
         <module>yl-bdf-boot-security</module>
         <module>yl-bdf-boot-product</module>

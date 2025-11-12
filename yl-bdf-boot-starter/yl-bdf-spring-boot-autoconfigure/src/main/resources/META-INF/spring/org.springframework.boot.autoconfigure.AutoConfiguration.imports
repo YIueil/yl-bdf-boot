@@ -1,0 +1,3 @@
+cc.yiueil.configuration.JpaBaseDaoConfiguration
+cc.yiueil.configuration.HelloAutoConfiguration
+cc.yiueil.configuration.WebAutoConfiguration
