@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Arrays;
 
@@ -20,6 +21,8 @@ import java.util.Arrays;
 @Schema(title = "标准返回视图对象")
 @NoArgsConstructor
 public class ResultVo implements Serializable {
+
+    @Serial
     private static final long serialVersionUID = -5220502988169199802L;
 
     @Schema(name ="应用响应状态码")
