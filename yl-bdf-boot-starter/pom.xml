@@ -9,12 +9,21 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>yl-bdf-boot-starter</artifactId>
+
     <name>yl-bdf-boot-starter</name>
+
     <modules>
-        <module>yl-bdf-spring-boot-autoconfigure</module>
-        <module>yl-bdf-spring-boot-starter</module>
+        <!-- 全功能 starter 模块 -->
+        <module>yl-bdf-all-spring-boot-starter-parent</module>
+        <!-- 核心功能 starter 模块 -->
+        <module>yl-bdf-core-spring-boot-starter-parent</module>
+        <!-- 查询功能 starter 模块 -->
+        <module>yl-bdf-query-spring-boot-starter-parent</module>
+        <!-- Web 功能 starter 模块 -->
+        <module>yl-bdf-web-spring-boot-starter-parent</module>
     </modules>
     <packaging>pom</packaging>
+
     <description>启动器模块</description>
 
     <build>
