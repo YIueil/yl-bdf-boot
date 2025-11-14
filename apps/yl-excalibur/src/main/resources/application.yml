@@ -29,3 +29,5 @@ debug: true
 bdf:
   storage:
     upload-path: D:\file-upload
+  security:
+    type: jwt

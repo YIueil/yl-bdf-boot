@@ -21,6 +21,7 @@
         <module>yl-bdf-query-spring-boot-starter-parent</module>
         <!-- Web 功能 starter 模块 -->
         <module>yl-bdf-web-spring-boot-starter-parent</module>
+        <module>yl-bdf-security-spring-boot-starter-parent</module>
     </modules>
     <packaging>pom</packaging>
 

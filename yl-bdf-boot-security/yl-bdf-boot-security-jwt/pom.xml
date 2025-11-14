@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cc.yiueil</groupId>
-        <artifactId>yl-bdf-all-spring-boot-starter-parent</artifactId>
+        <artifactId>yl-bdf-boot-security</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>yl-bdf-spring-boot-starter</artifactId>
+    <artifactId>yl-bdf-boot-security-jwt</artifactId>
 
-    <packaging>pom</packaging>
+    <description>基于 JWT 实现的一套简单的用户认证模块</description>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -22,26 +22,27 @@
     <dependencies>
         <dependency>
             <groupId>cc.yiueil</groupId>
-            <artifactId>yl-bdf-core-spring-boot-autoconfigure</artifactId>
+            <artifactId>yl-bdf-boot-security-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>cc.yiueil</groupId>
-            <artifactId>yl-bdf-web-spring-boot-autoconfigure</artifactId>
+            <artifactId>yl-bdf-boot-web</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>cc.yiueil</groupId>
-            <artifactId>yl-bdf-query-spring-boot-autoconfigure</artifactId>
+            <artifactId>yl-bdf-boot-jpa-query</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
+        <!-- JWT相关依赖 -->
         <dependency>
-            <groupId>cc.yiueil</groupId>
-            <artifactId>yl-bdf-security-spring-boot-autoconfigure</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>${java-jwt.version}</version>
         </dependency>
     </dependencies>
 </project>

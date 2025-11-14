@@ -3,21 +3,21 @@ package cc.yiueil2.convert;
 import cc.yiueil2.dto.UserDTO;
 import cc.yiueil2.dto.UserLoginDTO;
 import cc.yiueil2.dto.UserRegDTO;
-import cc.yiueil2.entity.UserEntity;
+import cc.yiueil2.entity.AppUserEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface UserConvert {
-    void dtoMapEntity(UserDTO userDTO, @MappingTarget UserEntity userEntity);
+    void dtoMapEntity(UserDTO userDTO, @MappingTarget AppUserEntity appUserEntity);
 
-    void entityMapDto(UserEntity userEntity, @MappingTarget UserDTO userDTO);
+    void entityMapDto(AppUserEntity appUserEntity, @MappingTarget UserDTO userDTO);
 
-    UserEntity toUserEntity(UserDTO userDTO);
+    AppUserEntity toUserEntity(UserDTO userDTO);
 
-    UserEntity toUserEntity(UserLoginDTO userLoginDTO);
+    AppUserEntity toUserEntity(UserLoginDTO userLoginDTO);
 
-    UserEntity toUserEntity(UserRegDTO userRegDTO);
+    AppUserEntity toUserEntity(UserRegDTO userRegDTO);
 
-    UserDTO toUserDTO(UserEntity userEntity);
+    UserDTO toUserDTO(AppUserEntity appUserEntity);
 }

@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cc.yiueil</groupId>
-        <artifactId>yl-bdf-all-spring-boot-starter-parent</artifactId>
+        <artifactId>yl-bdf-security-spring-boot-starter-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>yl-bdf-spring-boot-starter</artifactId>
+    <artifactId>yl-bdf-security-spring-boot-starter</artifactId>
 
     <packaging>pom</packaging>
 
@@ -22,26 +22,9 @@
     <dependencies>
         <dependency>
             <groupId>cc.yiueil</groupId>
-            <artifactId>yl-bdf-core-spring-boot-autoconfigure</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cc.yiueil</groupId>
-            <artifactId>yl-bdf-web-spring-boot-autoconfigure</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cc.yiueil</groupId>
-            <artifactId>yl-bdf-query-spring-boot-autoconfigure</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cc.yiueil</groupId>
             <artifactId>yl-bdf-security-spring-boot-autoconfigure</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
 </project>

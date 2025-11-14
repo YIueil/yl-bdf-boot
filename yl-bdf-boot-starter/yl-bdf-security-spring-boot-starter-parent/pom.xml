@@ -5,17 +5,16 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cc.yiueil</groupId>
-        <artifactId>yl-bdf-boot</artifactId>
+        <artifactId>yl-bdf-boot-starter</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>yl-bdf-boot-security</artifactId>
-    <description>安全父模块</description>
-    <packaging>pom</packaging>
+    <artifactId>yl-bdf-security-spring-boot-starter-parent</artifactId>
 
+    <packaging>pom</packaging>
     <modules>
-        <module>yl-bdf-boot-security-common</module>
-        <module>yl-bdf-boot-security-jwt</module>
+        <module>yl-bdf-security-spring-boot-starter</module>
+        <module>yl-bdf-security-spring-boot-autoconfigure</module>
     </modules>
 
     <properties>

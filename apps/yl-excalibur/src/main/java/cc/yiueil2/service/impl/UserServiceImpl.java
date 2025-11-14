@@ -4,13 +4,14 @@ import cc.yiueil2.convert.UserConvert;
 import cc.yiueil.data.impl.JpaBaseDao;
 import cc.yiueil2.dto.UserDTO;
 import cc.yiueil2.dto.UserRegDTO;
-import cc.yiueil2.entity.UserEntity;
+import cc.yiueil2.entity.AppUserEntity;
 import cc.yiueil2.entity.UserSignEntity;
 import cc.yiueil.exception.BusinessException;
 import cc.yiueil2.repository.UserSignRepository;
 import cc.yiueil2.service.UserService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,7 @@ import java.time.LocalDateTime;
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
+    @Qualifier(value = "jpaBaseDao")
     JpaBaseDao baseDao;
 
     @Autowired
@@ -32,32 +34,32 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public UserDTO createUser(UserRegDTO userDto) {
-        UserEntity userEntity = userConvert.toUserEntity(userDto);
-        userEntity.setBalance(0L);
-        userEntity.setSignDays(0L);
-        return userConvert.toUserDTO(baseDao.save(userEntity));
+        AppUserEntity appUserEntity = userConvert.toUserEntity(userDto);
+        appUserEntity.setBalance(0L);
+        appUserEntity.setSignDays(0L);
+        return userConvert.toUserDTO(baseDao.save(appUserEntity));
     }
 
     @Override
     @Transactional(readOnly = true)
     public UserDTO getUserByGuid(String guid) {
-        UserEntity userEntity = baseDao.findByGuid(UserEntity.class, guid).orElseThrow(EntityNotFoundException::new);
-        return userConvert.toUserDTO(userEntity);
+        AppUserEntity appUserEntity = baseDao.findByGuid(AppUserEntity.class, guid).orElseThrow(EntityNotFoundException::new);
+        return userConvert.toUserDTO(appUserEntity);
     }
 
     @Override
     @Transactional
     public void updateUser(String guid, UserDTO userDTO) {
-        UserEntity userEntity = baseDao.findByGuid(UserEntity.class, guid).orElseThrow(EntityNotFoundException::new);
-        userConvert.dtoMapEntity(userDTO, userEntity);
+        AppUserEntity appUserEntity = baseDao.findByGuid(AppUserEntity.class, guid).orElseThrow(EntityNotFoundException::new);
+        userConvert.dtoMapEntity(userDTO, appUserEntity);
         // 最后保存覆盖后的 entity
-        baseDao.save(userEntity);
+        baseDao.save(appUserEntity);
     }
 
     @Override
     @Transactional
     public void deleteUser(String guid) {
-        baseDao.deleteByGuid(UserEntity.class, guid);
+        baseDao.deleteByGuid(AppUserEntity.class, guid);
     }
 
     @Override
@@ -66,17 +68,17 @@ public class UserServiceImpl implements UserService {
         userSignRepository.findFirstByFkUserGuid(guid).ifPresent(userSignEntity -> {
             throw new BusinessException("今日已签到");
         });
-        UserEntity userEntity = baseDao.findByGuid(UserEntity.class, guid).orElseThrow(EntityNotFoundException::new);
-        userEntity.setSignDays(userEntity.getSignDays() + 1);
-        baseDao.save(userEntity);
-        UserSignEntity userSignEntity = getUserSignEntity(userEntity);
+        AppUserEntity appUserEntity = baseDao.findByGuid(AppUserEntity.class, guid).orElseThrow(EntityNotFoundException::new);
+        appUserEntity.setSignDays(appUserEntity.getSignDays() + 1);
+        baseDao.save(appUserEntity);
+        UserSignEntity userSignEntity = getUserSignEntity(appUserEntity);
         baseDao.save(userSignEntity);
     }
 
     @NotNull
-    private static UserSignEntity getUserSignEntity(UserEntity userEntity) {
+    private static UserSignEntity getUserSignEntity(AppUserEntity appUserEntity) {
         UserSignEntity userSignEntity = new UserSignEntity();
-        userSignEntity.setFkUserGuid(userEntity.getGuid());
+        userSignEntity.setFkUserGuid(appUserEntity.getGuid());
         userSignEntity.setSignInDate(LocalDate.now());
         userSignEntity.setSignInTime(LocalDateTime.now());
         return userSignEntity;

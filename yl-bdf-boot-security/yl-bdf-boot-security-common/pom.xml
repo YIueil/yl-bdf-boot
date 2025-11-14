@@ -5,18 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cc.yiueil</groupId>
-        <artifactId>yl-bdf-boot</artifactId>
+        <artifactId>yl-bdf-boot-security</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>yl-bdf-boot-security</artifactId>
-    <description>安全父模块</description>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>yl-bdf-boot-security-common</module>
-        <module>yl-bdf-boot-security-jwt</module>
-    </modules>
+    <artifactId>yl-bdf-boot-security-common</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -24,4 +17,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>cc.yiueil</groupId>
+            <artifactId>yl-bdf-boot-swagger</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>
