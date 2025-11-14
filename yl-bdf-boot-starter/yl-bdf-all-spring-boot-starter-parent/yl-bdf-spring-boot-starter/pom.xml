@@ -22,19 +22,19 @@
     <dependencies>
         <dependency>
             <groupId>cc.yiueil</groupId>
-            <artifactId>yl-bdf-core-spring-boot-starter</artifactId>
+            <artifactId>yl-bdf-core-spring-boot-autoconfigure</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>cc.yiueil</groupId>
-            <artifactId>yl-bdf-web-spring-boot-starter</artifactId>
+            <artifactId>yl-bdf-web-spring-boot-autoconfigure</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>cc.yiueil</groupId>
-            <artifactId>yl-bdf-query-spring-boot-starter</artifactId>
+            <artifactId>yl-bdf-query-spring-boot-autoconfigure</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

@@ -8,18 +8,13 @@ import cc.yiueil.query.impl.SimpleConfigResolver;
 import cc.yiueil.service.SearchService;
 import cc.yiueil.service.impl.SearchServiceImpl;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.sql.DataSource;
-
 @Configuration
-@ConditionalOnClass(DataSource.class)
 public class JpaBaseDaoConfiguration {
     @Bean
-    @ConditionalOnBean(value = DataSource.class)
     @ConditionalOnMissingBean(value = JpaBaseDao.class)
     public JpaBaseDao jpaBaseDao() {
         return new JpaBaseDao();
