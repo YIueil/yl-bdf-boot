@@ -1,7 +1,7 @@
 package cc.yiueil.config;
 
-import cc.yiueil.api.ImageResource;
-import cc.yiueil.api.impl.SmmsImageBedImpl;
+import cc.yiueil.service.ImageResource;
+import cc.yiueil.service.impl.SmmsImageBedImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

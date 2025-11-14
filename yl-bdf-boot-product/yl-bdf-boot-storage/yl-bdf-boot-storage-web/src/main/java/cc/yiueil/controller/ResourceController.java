@@ -1,8 +1,8 @@
 package cc.yiueil.controller;
 
 
-import cc.yiueil.api.ImageResource;
-import cc.yiueil.api.impl.SmmsImageBedImpl;
+import cc.yiueil.service.ImageResourceService;
+import cc.yiueil.service.impl.SmmsImageBedServiceImpl;
 import cc.yiueil.dto.FileDto;
 import cc.yiueil.entity.result.ImageUploadResult;
 import cc.yiueil.entity.result.UploadResult;
@@ -40,9 +40,9 @@ public class ResourceController implements LoggedController {
     @PostMapping(value = "/image/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String imageUpload(@RequestParam("file") MultipartFile multipartFile) {
         // 定义具体的实现, 这里是上传到 SM.MS 图床
-        ImageResource imageResource = new SmmsImageBedImpl();
+        ImageResourceService imageResourceService = new SmmsImageBedServiceImpl();
         try {
-            ImageUploadResult uploadResult = imageResource.upload(multipartFile.getInputStream(), multipartFile.getOriginalFilename(), multipartFile.getContentType());
+            ImageUploadResult uploadResult = imageResourceService.upload(multipartFile.getInputStream(), multipartFile.getOriginalFilename(), multipartFile.getContentType());
             return success(uploadResult);
         } catch (IOException e) {
             log.error(e.getMessage(), e);

@@ -1,12 +1,12 @@
 package cc.yiueil.service.impl;
 
-import cc.yiueil.api.FileResource;
-import cc.yiueil.api.impl.FileResourceImpl;
+import cc.yiueil.service.FileResourceService;
 import cc.yiueil.data.impl.JpaBaseDao;
 import cc.yiueil.dto.FileDto;
 import cc.yiueil.entity.file.FileEntity;
 import cc.yiueil.entity.result.UploadResult;
 import cc.yiueil.exception.ResourceNotFoundException;
+import cc.yiueil.properties.FileResourceProperties;
 import cc.yiueil.repository.FileRepository;
 import cc.yiueil.service.ResourceService;
 import cc.yiueil.util.BeanUtils;
@@ -30,12 +30,17 @@ public class ResourceServiceImpl implements ResourceService {
     @Autowired
     FileRepository fileRepository;
 
+    @Autowired
+    FileResourceProperties fileResourceProperties;
+
+    @Autowired
+    FileResourceService fileResource;
+
     @Override
     @Transactional(rollbackFor = Exception.class)
     public UploadResult fileUpload(MultipartFile multipartFile) throws IOException {
-        // TODO 修改为配置, 最终应该是从配置中获取
-        String dirPath = "D:\\file-upload";
-        FileResource fileResource = new FileResourceImpl();
+        String dirPath = fileResourceProperties.getUploadPath();
+
         FileEntity saveFileEntity;
         try (InputStream inputStream = multipartFile.getInputStream()) {
             FileEntity fileEntity =

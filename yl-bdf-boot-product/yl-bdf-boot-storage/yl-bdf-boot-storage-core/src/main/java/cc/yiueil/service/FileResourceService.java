@@ -1,4 +1,4 @@
-package cc.yiueil.api;
+package cc.yiueil.service;
 
 import cc.yiueil.entity.file.FileEntity;
 import cc.yiueil.exception.FileUploadException;
@@ -6,7 +6,14 @@ import cc.yiueil.exception.FileUploadException;
 import java.io.IOException;
 import java.io.InputStream;
 
-public interface FileResource {
+/**
+ * FileResourceService 文件类型的资源上传接口
+ *
+ * @author 弋孓 YIueil@163.com
+ * @version 1.0
+ * @date 2025/11/14 14:40
+ */
+public interface FileResourceService {
 
     /**
      * 文件上传

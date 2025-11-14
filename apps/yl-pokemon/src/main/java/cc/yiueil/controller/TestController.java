@@ -1,6 +1,6 @@
 package cc.yiueil.controller;
 
-import cc.yiueil.api.ImageResource;
+import cc.yiueil.service.ImageResource;
 import cc.yiueil.entity.result.ImageUploadResult;
 import cc.yiueil.entity.result.UploadResult;
 import io.swagger.v3.oas.annotations.Operation;

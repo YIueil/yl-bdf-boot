@@ -18,6 +18,13 @@
     </properties>
 
     <dependencies>
+        <!-- 配置处理器, 用于生成配置元数据 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <dependency>
             <groupId>cc.yiueil</groupId>
             <artifactId>yl-bdf-boot-web</artifactId>
@@ -33,6 +40,12 @@
         <dependency>
             <groupId>cc.yiueil</groupId>
             <artifactId>yl-bdf-boot-swagger</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cc.yiueil</groupId>
+            <artifactId>yl-bdf-boot-storage-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

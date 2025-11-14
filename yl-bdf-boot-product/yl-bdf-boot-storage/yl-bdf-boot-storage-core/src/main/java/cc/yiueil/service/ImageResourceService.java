@@ -1,4 +1,4 @@
-package cc.yiueil.api;
+package cc.yiueil.service;
 
 import cc.yiueil.entity.result.DownloadResult;
 import cc.yiueil.entity.result.ImageUploadResult;
@@ -13,7 +13,7 @@ import java.io.InputStream;
  * @version 1.0
  * @date 2024/1/18 11:54
  */
-public interface ImageResource {
+public interface ImageResourceService {
     /**
      * 上传图片
      *

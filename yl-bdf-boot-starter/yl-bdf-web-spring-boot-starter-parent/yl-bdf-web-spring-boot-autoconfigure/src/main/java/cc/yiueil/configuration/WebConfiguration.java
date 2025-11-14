@@ -47,16 +47,4 @@ public class WebConfiguration {
     public VersionController versionController() {
         return new VersionController();
     }
-
-    @Bean
-    @ConditionalOnMissingBean(ResourceController.class)
-    public ResourceController resourceController() {
-        return new ResourceController();
-    }
-
-    @Bean
-    @ConditionalOnMissingBean(ResourceService.class)
-    public ResourceService resourceService() {
-        return new ResourceServiceImpl();
-    }
 }

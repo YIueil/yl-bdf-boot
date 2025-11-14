@@ -26,3 +26,6 @@ yiueil:
     suffix: 再见
     prefix: 你好
 debug: true
+bdf:
+  storage:
+    upload-path: D:\file-upload

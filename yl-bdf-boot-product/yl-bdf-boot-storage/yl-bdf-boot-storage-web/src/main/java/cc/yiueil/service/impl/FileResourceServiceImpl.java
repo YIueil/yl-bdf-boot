@@ -1,10 +1,11 @@
-package cc.yiueil.api.impl;
+package cc.yiueil.service.impl;
 
-import cc.yiueil.api.FileResource;
+import cc.yiueil.service.FileResourceService;
 import cc.yiueil.entity.file.FileEntity;
 import cc.yiueil.exception.FileUploadException;
 import cc.yiueil.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,7 +15,8 @@ import java.nio.file.Paths;
 import java.util.UUID;
 
 @Slf4j
-public class FileResourceImpl implements FileResource {
+@Service
+public class FileResourceServiceImpl implements FileResourceService {
 
     @Override
     public FileEntity upload(InputStream inputStream, String dirPath, String fileName, String fileType, Long fileSize) throws FileUploadException, IOException {
