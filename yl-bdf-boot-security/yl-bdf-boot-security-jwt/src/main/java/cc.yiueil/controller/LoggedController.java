@@ -2,14 +2,7 @@ package cc.yiueil.controller;
 
 
 import cc.yiueil.dto.UserDto;
-import cc.yiueil.exception.BusinessException;
-import cc.yiueil.properties.JwtProperties;
-import cc.yiueil.properties.SecurityProperties;
-import cc.yiueil.util.JwtUtils;
-import cc.yiueil.util.StringUtils;
 import com.auth0.jwt.interfaces.Claim;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -35,5 +28,5 @@ public interface LoggedController extends BaseController {
      * @param request 请求体
      * @return 上下文哈希表
      */
-    Map<String, Claim> getContextMap(HttpServletRequest request);
+    Map<String, Object> getContextMap(HttpServletRequest request);
 }

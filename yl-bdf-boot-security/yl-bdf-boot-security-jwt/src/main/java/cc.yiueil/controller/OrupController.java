@@ -80,7 +80,7 @@ public class OrupController implements LoggedController {
      * @param request 请求体
      * @return 上下文哈希表
      */
-    public Map<String, Claim> getContextMap(HttpServletRequest request) {
+    public Map getContextMap(HttpServletRequest request) {
         String publicToken = request.getParameter("publicToken");
         if (publicToken == null) {
             return null;
