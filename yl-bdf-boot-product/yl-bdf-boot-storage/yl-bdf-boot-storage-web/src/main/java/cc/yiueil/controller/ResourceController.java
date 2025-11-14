@@ -9,8 +9,8 @@ import cc.yiueil.entity.result.UploadResult;
 import cc.yiueil.general.RestUrl;
 import cc.yiueil.service.ResourceService;
 import cc.yiueil.util.IoUtils;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -27,7 +27,7 @@ import java.io.OutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-@Api(value = "资源控制器")
+@Tag(name = "资源控制器")
 @Slf4j
 @RestController
 @RequestMapping(value = RestUrl.BASE_PATH + "/resource")
@@ -36,9 +36,9 @@ public class ResourceController implements LoggedController {
     @Autowired
     ResourceService resourceService;
 
-    @ApiOperation(value = "图片上传", notes = "图片上传, 图片上传到SM.MS图床")
-    @PostMapping(value = "/image/upload")
-    public String imageUpload(@RequestParam("file") MultipartFile multipartFile){
+    @Operation(summary = "图片上传", description = "图片上传, 图片上传到SM.MS图床")
+    @PostMapping(value = "/image/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String imageUpload(@RequestParam("file") MultipartFile multipartFile) {
         // 定义具体的实现, 这里是上传到 SM.MS 图床
         ImageResource imageResource = new SmmsImageBedImpl();
         try {
@@ -50,14 +50,14 @@ public class ResourceController implements LoggedController {
         }
     }
 
-    @ApiOperation(value = "文件查询", notes = "文件查询, 查询出所有文件")
+    @Operation(summary = "文件查询", description = "文件查询, 查询出所有文件")
     @GetMapping(value = "/file/list")
-    public String listFile(){
+    public String listFile() {
         return success(resourceService.listFile());
     }
 
-    @ApiOperation(value = "文件上传", notes = "文件上传, 文件上传到本地路径")
-    @PostMapping(value = "/file/upload")
+    @Operation(summary = "文件上传", description = "文件上传, 文件上传到本地路径")
+    @PostMapping(value = "/file/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String fileUpload(@RequestPart("file") MultipartFile multipartFile) {
         try {
             UploadResult uploadResult = resourceService.fileUpload(multipartFile);
@@ -68,14 +68,14 @@ public class ResourceController implements LoggedController {
         }
     }
 
-    @ApiOperation(value = "文件分片上传", notes = "文件分片上传, 文件分片上传到本地路径")
+    @Operation(summary = "文件分片上传", description = "文件分片上传, 文件分片上传到本地路径")
     @PostMapping(value = "/file/MultiPartUpload")
     public String fileMultiPartUpload(@RequestParam("file") MultipartFile multipartFile) {
         // TODO 文件分片上传 功能实现
         return null;
     }
 
-    @ApiOperation(value = "文件下载", notes = "文件下载, 进行文件下载")
+    @Operation(summary = "文件下载", description = "文件下载, 进行文件下载")
     @GetMapping(value = "/file/download/{guid}")
     public void fileDownload(@PathVariable("guid") String guid, HttpServletResponse response) {
         FileDto fileDto = resourceService.getFileByGuid(guid);
@@ -93,7 +93,7 @@ public class ResourceController implements LoggedController {
         }
     }
 
-    @ApiOperation(value = "文件预览", notes = "文件预览")
+    @Operation(summary = "文件预览", description = "文件预览")
     @GetMapping(value = "/file/preview/{guid}")
     public void filePreview(@PathVariable("guid") String guid, HttpServletResponse response) {
         FileDto fileDto = resourceService.getFileByGuid(guid);

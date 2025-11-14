@@ -5,11 +5,13 @@ import cc.yiueil.advise.TimeIntervalAdvise;
 import cc.yiueil.controller.ResourceController;
 import cc.yiueil.controller.VersionController;
 import cc.yiueil.handler.CustomExceptionHandler;
+import cc.yiueil.repository.FileRepository;
 import cc.yiueil.service.ResourceService;
 import cc.yiueil.service.impl.ResourceServiceImpl;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * WebAutoConfiguration Web模块的自动配置
@@ -29,26 +31,31 @@ public class WebConfiguration {
     }
 
     @Bean
+    @ConditionalOnMissingBean(LogAdvise.class)
     public LogAdvise logAdvise() {
         return new LogAdvise();
     }
 
     @Bean
+    @ConditionalOnMissingBean(TimeIntervalAdvise.class)
     public TimeIntervalAdvise timeIntervalAdvise() {
         return new TimeIntervalAdvise();
     }
 
     @Bean
+    @ConditionalOnMissingBean(VersionController.class)
     public VersionController versionController() {
         return new VersionController();
     }
 
     @Bean
+    @ConditionalOnMissingBean(ResourceController.class)
     public ResourceController resourceController() {
         return new ResourceController();
     }
 
     @Bean
+    @ConditionalOnMissingBean(ResourceService.class)
     public ResourceService resourceService() {
         return new ResourceServiceImpl();
     }

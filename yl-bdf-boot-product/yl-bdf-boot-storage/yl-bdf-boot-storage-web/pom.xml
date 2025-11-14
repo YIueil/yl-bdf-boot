@@ -33,7 +33,7 @@
 
         <dependency>
             <groupId>cc.yiueil</groupId>
-            <artifactId>yl-bdf-jpa</artifactId>
+            <artifactId>yl-bdf-boot-jpa</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

@@ -14,6 +14,9 @@ spring:
       thread-name-prefix: scheduler-
       pool:
         size: 2
+  servlet:
+    multipart:
+      max-file-size: 10MB
 logging:
   level:
     cc.yiueil: debug
