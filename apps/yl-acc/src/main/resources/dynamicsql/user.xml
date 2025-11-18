@@ -7,16 +7,16 @@
         <sql>
             <![CDATA[
                 select id,
-                       createtime   "createTime",
-                       createuserid "createUserId",
+                       create_time    "createTime",
+                       create_user_id "createUserId",
                        email,
                        guid,
-                       loginname    "loginName",
-                       modifytime   "modifyTime",
-                       phonenumber  "phoneNumber",
-                       username     "userName",
+                       login_name     "loginName",
+                       modify_time    "modifyTime",
+                       phone_number   "phoneNumber",
+                       user_name      "userName",
                        state,
-                       avatarurl    "avatarUrl"
+                       avatar_url     "avatarUrl"
                 from yl_acc.user
                 where 1 = 1
             ]]>

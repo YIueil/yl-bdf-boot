@@ -120,8 +120,9 @@ public class AuthenticateInterceptor implements HandlerInterceptor {
      * @return 校验结果
      */
     private boolean verifyToken(HttpServletRequest request, HttpServletResponse response) {
-        String token = jwtProperties.getHeaderParamsName();
+        String headerParamsName = jwtProperties.getHeaderParamsName();
         String publicToken = jwtProperties.getPublicToken();
+        String token = request.getHeader(headerParamsName);
         RequestContextThreadLocal.setParams("token", token);
         if (publicToken.equals(token)) {
             return true;
