@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root cache="true"
+      xmlns="http://www.yiueil.cc"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.yiueil.cc https://yiueil.github.io/static-repo/static/xsd/yl-dynamic-sql.xsd">
+    <config id="getMessageList">
+        <sql><![CDATA[
+            select m.id, senderid, receiverid, content, type, sort, m.state, u.username as "senderUserName", u2.username as "receiverUserName"
+            from yl_acc.message m
+                     left join yl_acc."user" u on m.receiverid = u.id
+                     left join yl_acc."user" u2 on m.senderid =  u2.id
+            where 1 = 1
+        ]]></sql>
+        <filters>
+            <filter name="userId" type="number"><![CDATA[
+                and m.receiverid = :userId
+            ]]></filter>
+        </filters>
+        <endSql><![CDATA[
+            order by sort, m.createtime desc
+        ]]></endSql>
+    </config>
+</root>

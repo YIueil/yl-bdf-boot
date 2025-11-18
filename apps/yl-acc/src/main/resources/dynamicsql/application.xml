@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root cache="true"
+      xmlns="http://www.yiueil.cc"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.yiueil.cc https://yiueil.github.io/static-repo/static/xsd/yl-dynamic-sql.xsd">
+    <!--获取管理中的应用-->
+    <config id="getManageApplicationList">
+        <sql><![CDATA[
+            select distinct a.id,
+                            a.createtime "createTime",
+                            a.createuserid "createUserId",
+                            a.description,
+                            a.guid,
+                            a.modifytime "modifyTime",
+                            a.name,
+                            a.url
+            from yl_acc.application a
+                     left join yl_acc.application_manager am on am.applicationid = a.id
+            where am.managerid = :userId
+        ]]></sql>
+        <params>
+            <param name="userId"/>
+        </params>
+        <endSql><![CDATA[
+            order by a.createtime
+        ]]></endSql>
+    </config>
+
+    <!--获取用户应用功能-->
+    <config id="getUserApplicationFunctions">
+        <sql><![CDATA[
+            select f.id,
+                   f.applicationid,
+                   f.createtime,
+                   f.createuserid,
+                   f.description,
+                   f.guid,
+                   f.method,
+                   f.modifytime,
+                   f.name,
+                   f.parentid,
+                   f.type,
+                   f.url,
+                   f.rightname
+            from yl_acc.function f
+                     left join yl_acc.role_function rf on rf.functionid = f.id
+                     left join yl_acc.user_role ur on ur.roleid = rf.roleid
+            where f.applicationid = :applicationId
+              and ur.userid = :userId
+        ]]></sql>
+        <params>
+            <param name="userId"/>
+            <param name="applicationId"/>
+        </params>
+        <endSql><![CDATA[
+            order by f.createtime desc
+        ]]></endSql>
+    </config>
+
+    <!--获取应用列表-->
+    <config id="getApplicationList">
+        <sql><![CDATA[
+            select app.id, app.guid, app.name, app.iconurl as "iconUrl", app.description, app.status, app.url, string_agg(u.username, ',') as "applicationManager"
+            from yl_acc.application app
+                     left join yl_acc.application_manager appm on appm.applicationid = app.id
+                     left join yl_acc."user" u on u.id = appm.managerid
+            where 1 = 1
+        ]]></sql>
+        <filters>
+            <filter name="filterString" left="%" right="%"><![CDATA[
+                and app.name like :filterString
+            ]]></filter>
+            <filter name="status"><![CDATA[
+                and app.status = :status
+            ]]></filter>
+        </filters>
+        <endSql><![CDATA[
+            group by app.id, app.guid, app.name, app.iconurl, app.description, app.status, app.url
+            order by app.id desc
+        ]]></endSql>
+    </config>
+</root>

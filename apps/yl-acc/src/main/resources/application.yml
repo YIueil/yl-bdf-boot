@@ -1,0 +1,15 @@
+server:
+  port: 7878
+spring:
+  datasource:
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    username: postgres
+    password: postgres
+    url: jdbc:p6spy:postgresql://192.168.193.234:5432/platform?currentSchema=yl_acc&useUnicode=true&characterEncoding=UTF-8
+  jpa:
+    show-sql: true
+    generate-ddl: true
+# bdf 框架相关配置
+bdf:
+  security:
+    type: jwt

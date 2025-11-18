@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root cache="true"
+      xmlns="http://www.yiueil.cc"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.yiueil.cc https://yiueil.github.io/static-repo/static/xsd/yl-dynamic-sql.xsd">
+    <config id="getUserList">
+        <sql>
+            <![CDATA[
+                select id,
+                       createtime   "createTime",
+                       createuserid "createUserId",
+                       email,
+                       guid,
+                       loginname    "loginName",
+                       modifytime   "modifyTime",
+                       phonenumber  "phoneNumber",
+                       username     "userName",
+                       state,
+                       avatarurl    "avatarUrl"
+                from yl_acc.user
+                where 1 = 1
+            ]]>
+        </sql>
+        <filters>
+            <filter name="guid">
+                <![CDATA[
+                    and guid = :guid
+                ]]>
+            </filter>
+        </filters>
+        <endSql>
+            <![CDATA[
+                order by id
+            ]]>
+        </endSql>
+    </config>
+
+    <config id="getOrgUserList">
+        <sql>
+            <![CDATA[
+                select distinct u.id,
+                       uo.createtime "createTime",
+                       u.createuserid "createUserId",
+                       u.email,
+                       u.guid,
+                       u.password,
+                       u.phonenumber "phoneNumber",
+                       u.username "userName",
+                       u.state,
+                       u.avatarurl "avatarUrl"
+                from yl_acc."user" u
+                         left join yl_acc.user_org uo on uo.userid = u.id
+                where uo.orgid = :orgId
+            ]]>
+        </sql>
+        <params>
+            <param name="orgId"/>
+        </params>
+        <endSql>
+            <![CDATA[
+                order by uo.createTime desc
+            ]]>
+        </endSql>
+    </config>
+
+    <config id="getRoleUserList">
+        <sql>
+            <![CDATA[
+                select distinct u.id,
+                                ur.createtime  "createTime",
+                                u.createuserid "createUserId",
+                                u.email,
+                                u.guid,
+                                u.password,
+                                u.phonenumber  "phoneNumber",
+                                u.username     "userName",
+                                u.state,
+                                u.avatarurl    "avatarUrl"
+                from yl_acc."user" u
+                         left join yl_acc.user_role ur on ur.userid = u.id
+                where ur.roleid = :roleId
+            ]]>
+        </sql>
+        <params>
+            <param name="roleId"/>
+        </params>
+        <endSql>
+            <![CDATA[
+                order by ur.createTime desc
+            ]]>
+        </endSql>
+    </config>
+
+    <!--弹窗查询可加入用户集合-->
+    <config id="addAbleUserList">
+        <sql><![CDATA[
+            select distinct u.id,
+                            u.guid,
+                            u.username  "userName",
+                            u.state,
+                            u.avatarurl "avatarUrl",
+                            u.createtime
+            from yl_acc."user" u
+                     left join yl_acc.user_org uo on uo.userid = u.id
+                     left join yl_acc.user_role ur on ur.userid = u.id
+                     left join yl_acc.application_manager am on am.managerid = u.id
+            where 1 = 1
+        ]]></sql>
+        <filters>
+            <filter name="notInOrgIds" type="numberArray"><![CDATA[
+                and not exists (
+                    select 1
+                    from yl_acc.user_org uo2
+                    where uo2.userid = u.id and uo2.orgid in (:notInOrgIds)
+                )
+            ]]></filter>
+            <filter name="notInRoleIds" type="numberArray"><![CDATA[
+                and not exists(
+                        select 1
+                        from yl_acc.user_role ur2
+                        where ur2.userid = u.id
+                          and ur2.roleid in (:notInRoleIds)
+                    )
+            ]]></filter>
+            <filter name="notInAppIds" type="numberArray"><![CDATA[
+                and not exists(
+                        select 1
+                        from yl_acc.application_manager ur2
+                        where ur2.managerid = u.id
+                          and ur2.applicationid in (:notInAppIds)
+                    )
+            ]]></filter>
+        </filters>
+        <endSql><![CDATA[
+            order by u.createTime
+        ]]></endSql>
+    </config>
+</root>

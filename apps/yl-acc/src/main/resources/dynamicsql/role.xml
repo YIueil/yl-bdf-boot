@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root cache="true"
+      xmlns="http://www.yiueil.cc"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.yiueil.cc https://yiueil.github.io/static-repo/static/xsd/yl-dynamic-sql.xsd">
+    <config id="getRoleListWithAuth">
+        <sql><![CDATA[
+            select r.id,
+                   r.createtime "createTime",
+                   r.createuserid "createUserId",
+                   r.description,
+                   r.guid,
+                   r.modifytime "modifyTime",
+                   r.name,
+                   r.parentid "parentId",
+                   case
+                       when exists(
+                               select 1 from yl_acc.role_function rf where rf.roleid = r.id and rf.functionid = :functionId
+                           ) then 1
+                       else 0 end as "hasFunction",
+                   case
+                       when exists(
+                               select 1 from yl_acc.role_permission rf where rf.roleid = r.id and rf.permissionid = :permissionId
+                           ) then 1
+                       else 0 end as "hasPermission"
+            from yl_acc.role r
+        ]]></sql>
+        <params>
+            <param name="functionId"/>
+            <param name="permissionId"/>
+        </params>
+    </config>
+</root>
