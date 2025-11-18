@@ -18,17 +18,17 @@ import java.util.stream.Collectors;
  * @version 1.0
  * @date 2023/9/14 14:11
  */
-@Tag(name = "应用版本")
+@Tag(name = "PRODUCT-应用版本")
 @RestController
 @RequestMapping(value = RestUrl.BASE_PATH + "/version")
 public class VersionController implements BaseController{
-    @Operation(description = "获取状态码相关信息")
+    @Operation(summary = "获取状态码相关信息", description = "获取状态码相关信息")
     @GetMapping(value="getStatusCode")
     public String statusCode(){
         return success(Arrays.stream(ResultCode.values()).map(ResultCode::toString).collect(Collectors.toList()));
     }
 
-    @Operation(description = "错误测试")
+    @Operation(summary = "错误测试", description = "错误测试")
     @GetMapping(value = "errorTest")
     public String errorTest(){
         throw new RuntimeException("一个示例的运行时错误");

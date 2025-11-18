@@ -27,7 +27,7 @@ import java.io.OutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-@Tag(name = "资源控制器")
+@Tag(name = "PRODUCT-资源控制器")
 @Slf4j
 @RestController
 @RequestMapping(value = RestUrl.BASE_PATH + "/resource")

@@ -27,7 +27,7 @@ import java.util.Map;
  * @version 1.0
  */
 @Slf4j
-@Tag(name = "通用查询")
+@Tag(name = "PRODUCT-通用查询")
 @RestController
 @RequestMapping(value = RestUrl.BASE_PATH + SearchRestUrl.QUERY)
 public class SearchController implements BaseController {

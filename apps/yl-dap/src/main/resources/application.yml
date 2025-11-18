@@ -1,0 +1,15 @@
+server:
+  port: 7878
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://192.168.193.234:5432/platform
+  jpa:
+    show-sql: true
+    generate-ddl: true
+# bdf 框架相关配置
+bdf:
+  security:
+    type: jwt

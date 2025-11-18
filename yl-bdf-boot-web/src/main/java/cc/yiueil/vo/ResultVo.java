@@ -18,7 +18,7 @@ import java.util.Arrays;
  * @version 1.0
  */
 @Getter
-@Schema(title = "标准返回视图对象")
+@Schema(name = "标准返回视图对象")
 @NoArgsConstructor
 public class ResultVo implements Serializable {
 

@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-@Schema(title = "分页视图对象")
+@Schema(name = "分页视图对象")
 public class PageVo implements Serializable {
     private static final long serialVersionUID = 1195144831131702958L;
 

@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
  * @version 1.0
  * @date 2023/5/30 22:16
  */
-@Tag(name = "ORUP-用户角色账户权限控制")
+@Tag(name = "ORUP-角色权限")
 @Slf4j
 @RestController
 @RequestMapping(value = RestUrl.BASE_PATH + OrupRestUrl.ORUP)

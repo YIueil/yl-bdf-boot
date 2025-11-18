@@ -26,7 +26,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @ConditionalOnProperty(value = "bdf.security.type", havingValue = "jwt")
 public class JwtConfiguration {
 
-
     //region 拦截器注册
     @Bean
     @ConditionalOnMissingBean(AuthenticateInterceptor.class)
