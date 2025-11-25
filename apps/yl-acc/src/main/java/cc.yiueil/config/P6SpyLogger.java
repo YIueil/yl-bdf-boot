@@ -27,6 +27,6 @@ public class P6SpyLogger implements MessageFormattingStrategy {
     @Override
     public String formatMessage(int connectionId, String now, long elapsed, String category, String prepared, String sql, String url) {
         StringBuilder sb = new StringBuilder();
-        return !"".equals(sql.trim()) ? sb.append(this.format.format(new Date())).append(" | took ").append(elapsed).append("ms | ").append(category).append(" | connection ").append(connectionId).append(FORMATTER.format(sql)).append(";").toString() : "";
+        return !sql.trim().isEmpty() ? sb.append(this.format.format(new Date())).append(" | took ").append(elapsed).append("ms | ").append(category).append(" | connection ").append(connectionId).append(FORMATTER.format(sql)).append(";").toString() : "";
     }
 }
