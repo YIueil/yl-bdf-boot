@@ -11,7 +11,7 @@
 
     <artifactId>yl-bdf-security-spring-boot-starter</artifactId>
 
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
