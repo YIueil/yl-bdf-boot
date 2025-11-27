@@ -282,6 +282,7 @@
         },
 
         "POPUP": {
+          "MODEL_NAME_EXISTS": "Model Name Exists",
           "ADD-COMMENT-TITLE": "Add Comment",
           "ADD-COMMENT-DESCRIPTION" : "Enter a new comment below for \"{{name}}\"",
           "ADD-COMMENT-SIZE-ERROR": "The comment cannot exceed 4000 characters",

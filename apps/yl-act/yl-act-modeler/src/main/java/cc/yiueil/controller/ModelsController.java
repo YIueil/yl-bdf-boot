@@ -3,6 +3,7 @@ package cc.yiueil.controller;
 import cc.yiueil.common.ResultListDataRepresentation;
 import cc.yiueil.converter.BpmnDisplayJsonConverter;
 import cc.yiueil.domain.Model;
+import cc.yiueil.exception.BusinessException;
 import cc.yiueil.repository.ModelRepository;
 import cc.yiueil.util.XmlUtil;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -86,11 +87,19 @@ public class ModelsController implements BaseController{
     @RequestMapping(value = "/rest/models", method = RequestMethod.POST, produces = "application/json")
     @ResponseStatus(value = HttpStatus.OK)
     public Model createModel(@RequestBody Map<String, String> jsonMap) {
+        String key = jsonMap.get("key");
+        String name = jsonMap.get("name");
+        String description = jsonMap.get("description");
+        Integer modelType = Integer.valueOf(jsonMap.get("modelType"));
+        if (this.modelRepository.existsByName(name)) {
+            throw new BusinessException("模型名称重复！");
+        }
+
         Model model = new Model();
-        model.setKey(jsonMap.get("key"));
-        model.setName(jsonMap.get("name"));
-        model.setDescription(jsonMap.get("description"));
-        model.setModelType(Integer.valueOf(jsonMap.get("modelType")));
+        model.setKey(key);
+        model.setName(name);
+        model.setDescription(description);
+        model.setModelType(modelType);
         createObjectNode(model);
         model = this.modelRepository.save(model);
         return model;

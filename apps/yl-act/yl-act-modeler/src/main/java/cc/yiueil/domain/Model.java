@@ -10,7 +10,9 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "ACT_DE_MODEL")
+@Table(name = "ACT_DE_MODEL", uniqueConstraints = {
+        @UniqueConstraint(name = "uk_act_de_model_name", columnNames = "name")
+})
 public class Model {
 
     public static final int MODEL_TYPE_BPMN = 0;
@@ -24,7 +26,7 @@ public class Model {
     @Column(name = "id", unique = true, length = 50)
     protected String id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, length = 100)
     protected String name;
 
     @Column(name = "model_key")

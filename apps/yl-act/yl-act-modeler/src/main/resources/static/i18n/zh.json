@@ -584,6 +584,7 @@
 
     },
     "POPUP": {
+      "MODEL_NAME_EXISTS": "已经存在同名模型",
       "ADD-COMMENT-TITLE": "添加评论",
       "ADD-COMMENT-DESCRIPTION": "在下方为\"{{name}}\"输入新评论",
       "ADD-COMMENT-SIZE-ERROR": "评论不能超过4000个字符",
