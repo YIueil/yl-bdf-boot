@@ -27,10 +27,9 @@ angular.module('activitiModeler')
     $scope.loadProcess = function() {
       var url;
       if ($routeParams.modelHistoryId) {
-        url = ACTIVITI.CONFIG.contextRoot + '/app/rest/models/' + $routeParams.modelId
+        url = ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $routeParams.modelId
           + '/history/' + $routeParams.modelHistoryId;
       } else {
-        //url = ACTIVITI.CONFIG.contextRoot + '/app/rest/models/' + $routeParams.modelId;
         url = ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $routeParams.modelId;
       }
       
@@ -89,7 +88,7 @@ angular.module('activitiModeler')
         includeLatestVersion: !$scope.model.process.latestVersion  
       };
       
-      $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/models/' + $scope.model.latestModelId +'/history', params: params}).
+      $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $scope.model.latestModelId +'/history', params: params}).
       success(function(data, status, headers, config) {
         if ($scope.model.process.latestVersion) {
           if (!data.data) {

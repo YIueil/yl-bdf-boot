@@ -76,7 +76,7 @@ angular.module('activitiModeler')
 		    params.filterText = $scope.model.filterText;
 		  }
 
-		  $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/models', params: params}).
+		  $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/rest/models', params: params}).
 		  	success(function(data, status, headers, config) {
 	    		$scope.model.decisionTables = data;
 	    		$scope.model.loading = false;
@@ -166,7 +166,7 @@ angular.module('activitiModeler')
 
         $scope.model.loading = true;
 
-        $http({method: 'POST', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/models', data: $scope.model.decisionTable}).
+        $http({method: 'POST', url: ACTIVITI.CONFIG.contextRoot + '/rest/models', data: $scope.model.decisionTable}).
             success(function(data, status, headers, config) {
                 $scope.$hide();
                 $scope.model.loading = false;
@@ -235,7 +235,7 @@ angular.module('activitiModeler')
 
 		$scope.model.loading = true;
 
-		$http({ method: 'POST', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/models/' + $scope.model.decisionTable.id + '/clone', data: $scope.model.decisionTable }).
+		$http({ method: 'POST', url: ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $scope.model.decisionTable.id + '/clone', data: $scope.model.decisionTable }).
 		success(function (data, status, headers, config) {
 			$scope.$hide();
 			$scope.model.loading = false;
@@ -274,9 +274,9 @@ angular.module('activitiModeler')
 
           var url;
           if (isIE) {
-              url = ACTIVITI.CONFIG.contextRoot + '/app/rest/decision-table-models/import-decision-table-text';
+              url = ACTIVITI.CONFIG.contextRoot + '/restdecision-table-models/import-decision-table-text';
           } else {
-              url = ACTIVITI.CONFIG.contextRoot + '/app/rest/decision-table-models/import-decision-table';
+              url = ACTIVITI.CONFIG.contextRoot + '/restdecision-table-models/import-decision-table';
           }
 
           Upload.upload({

@@ -36,7 +36,7 @@ angular.module('activitiModeler')
                 item: '=stencilItem'
             },
             restrict: 'E',
-            template: '<img class="stencil-item-list-icon" ng-if=\"item.customIconId != null && item.customIconId != undefined\" ng-src=\"' + ACTIVITI.CONFIG.contextRoot + '/app/rest/image/{{item.customIconId}}\" width=\"16px\" height=\"16px\"/>' +
+            template: '<img class="stencil-item-list-icon" ng-if=\"item.customIconId != null && item.customIconId != undefined\" ng-src=\"' + ACTIVITI.CONFIG.contextRoot + '/rest/image/{{item.customIconId}}\" width=\"16px\" height=\"16px\"/>' +
             '<img class="stencil-item-list-icon" ng-if=\"(item.customIconId == null || item.customIconId == undefined) && item.icon != null && item.icon != undefined\" ng-src=\"editor-app/stencilsets/bpmn2.0/icons/{{item.icon}}\" width=\"16px\" height=\"16px\"/>'
         };
     }]);

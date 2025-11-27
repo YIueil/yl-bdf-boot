@@ -151,9 +151,9 @@ angular.module('activitiModeler')
 
                 var url;
                 if ($routeParams.modelHistoryId) {
-                    url = ACTIVITI.CONFIG.contextRoot + '/app/rest/form-models/' + $routeParams.modelId + '/history/' + $routeParams.modelHistoryId;
+                    url = ACTIVITI.CONFIG.contextRoot + '/restform-models/' + $routeParams.modelId + '/history/' + $routeParams.modelHistoryId;
                 } else {
-                    url = ACTIVITI.CONFIG.contextRoot + '/app/rest/form-models/' + $routeParams.modelId;
+                    url = ACTIVITI.CONFIG.contextRoot + '/restform-models/' + $routeParams.modelId;
                 }
 
                 $http({method: 'GET', url: url}).

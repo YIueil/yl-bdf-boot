@@ -27,7 +27,7 @@ angular.module('activitiModeler').service('DecisionTableService', [ '$rootScope'
             return httpAsPromise(
                 {
                     method: 'GET',
-                    url: ACTIVITI.CONFIG.contextRoot + '/app/rest/decision-table-models',
+                    url: ACTIVITI.CONFIG.contextRoot + '/rest/decision-table-models',
                     params: {filter: filter}
                 }
             );
@@ -37,7 +37,7 @@ angular.module('activitiModeler').service('DecisionTableService', [ '$rootScope'
          * Fetches the details of a decision table.
          */
         this.fetchDecisionTableDetails = function(modelId, historyModelId) {
-            var url = ACTIVITI.CONFIG.contextRoot + '/app/rest/decision-table-models/';
+            var url = ACTIVITI.CONFIG.contextRoot + '/rest/decision-table-models/';
             if (historyModelId) {
                 url += 'history/' + encodeURIComponent(historyModelId);
             }
@@ -114,7 +114,7 @@ angular.module('activitiModeler').service('DecisionTableService', [ '$rootScope'
 
 	                $http({
 	                    method: 'PUT',
-	                    url: ACTIVITI.CONFIG.contextRoot + '/app/rest/decision-table-models/' + $rootScope.currentDecisionTable.id,
+	                    url: ACTIVITI.CONFIG.contextRoot + '/rest/decision-table-models/' + $rootScope.currentDecisionTable.id,
 	                    data: data}).
 	                
 	                	success(function (response, status, headers, config) {
@@ -148,7 +148,7 @@ angular.module('activitiModeler').service('DecisionTableService', [ '$rootScope'
                 }
                 decisionTableIdParams += 'version=' + Date.now();
 
-                $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/decision-table-models/values?' + decisionTableIdParams}).
+                $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/rest/decision-table-models/values?' + decisionTableIdParams}).
                     success(function (data) {
                         if (callback) {
                             callback(data);

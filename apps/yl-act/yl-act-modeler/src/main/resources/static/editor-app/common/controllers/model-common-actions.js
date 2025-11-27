@@ -60,7 +60,7 @@ angular.module('activitiModeler')
     			$scope.model.description
     		};
 
-    		$http({method: 'PUT', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/models/' + $scope.popup.id, data: updateData}).
+    		$http({method: 'PUT', url: ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $scope.popup.id, data: updateData}).
     			success(function(data, status, headers, config) {
     				if ($scope.model.process) {
     					$scope.model.process = data;
@@ -128,7 +128,7 @@ angular.module('activitiModeler')
         };
 
         // Loading relations when opening
-        $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/models/' + $scope.popup.model.id + '/parent-relations'}).
+        $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $scope.popup.model.id + '/parent-relations'}).
             success(function (data, status, headers, config) {
                 $scope.popup.loading = false;
                 $scope.popup.loadingRelations = false;
@@ -146,7 +146,7 @@ angular.module('activitiModeler')
                 cascade: $scope.popup.cascade === 'true'
             };
 
-            $http({method: 'DELETE', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/models/' + $scope.popup.model.id, params: params}).
+            $http({method: 'DELETE', url: ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $scope.popup.model.id, params: params}).
                 success(function (data, status, headers, config) {
                     $scope.$hide();
                     $scope.popup.loading = false;
@@ -201,7 +201,7 @@ angular.module('activitiModeler')
 			comment: $scope.popup.comment
 		};
 
-		$http({method: 'POST', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/models/' + $scope.popup.latestModelId + '/history/' + $scope.popup.model.id, data: actionData}).
+		$http({method: 'POST', url: ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $scope.popup.latestModelId + '/history/' + $scope.popup.model.id, data: actionData}).
 			success(function(data, status, headers, config) {
 
                 var backToOverview = function() {
@@ -280,7 +280,7 @@ angular.module('activitiModeler')
             };
 
             // Fetch the share info from the server
-            var shareInfoUrl = ACTIVITI.CONFIG.contextRoot + '/app/rest/models/' + $scope.popup.model.id + '/share-info';
+            var shareInfoUrl = ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $scope.popup.model.id + '/share-info';
 
             $http({method: 'GET', url: shareInfoUrl}).
                 success(function (data, status, headers, config) {
@@ -441,7 +441,7 @@ angular.module('activitiModeler')
 
                 delete Array.prototype.toJSON;
 
-                var putUrl = ACTIVITI.CONFIG.contextRoot + '/app/rest/models/' + $scope.popup.model.id + '/share-info';
+                var putUrl = ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $scope.popup.model.id + '/share-info';
 
                 $http({method: 'PUT', url: putUrl, data: shareData}).
                     success(function (data, status, headers, config) {

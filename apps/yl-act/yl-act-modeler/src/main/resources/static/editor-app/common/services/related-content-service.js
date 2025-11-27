@@ -31,7 +31,7 @@ activitiModule.service('RelatedContentService', ['$http', '$q', '$rootScope', '$
             var promise = httpAsPromise(
                 {
                     method: 'DELETE',
-                    url: ACTIVITI.CONFIG.contextRoot + '/app/rest/content/' + contentId
+                    url: ACTIVITI.CONFIG.contextRoot + '/rest/content/' + contentId
                 }
             );
 
@@ -45,9 +45,9 @@ activitiModule.service('RelatedContentService', ['$http', '$q', '$rootScope', '$
 
             if(taskId) {
                 if (isIE) {
-                    url = ACTIVITI.CONFIG.contextRoot + '/app/rest/tasks/' + taskId + '/raw-content/text';
+                    url = ACTIVITI.CONFIG.contextRoot + '/rest/tasks/' + taskId + '/raw-content/text';
                 } else {
-                    url = ACTIVITI.CONFIG.contextRoot + '/app/rest/tasks/' + taskId + '/raw-content';
+                    url = ACTIVITI.CONFIG.contextRoot + '/rest/tasks/' + taskId + '/raw-content';
                 }
                 uploadPromise = Upload.upload({
                     url: url,
@@ -57,9 +57,9 @@ activitiModule.service('RelatedContentService', ['$http', '$q', '$rootScope', '$
                 
             } else {
                 if (isIE) {
-                    url = ACTIVITI.CONFIG.contextRoot + '/app/rest/content/raw/text';
+                    url = ACTIVITI.CONFIG.contextRoot + '/rest/content/raw/text';
                 } else {
-                    url = ACTIVITI.CONFIG.contextRoot + '/app/rest/content/raw';
+                    url = ACTIVITI.CONFIG.contextRoot + '/rest/content/raw';
                 }
                 // Generic piece of content, initially marked as temporary
                 uploadPromise = Upload.upload({
@@ -95,9 +95,9 @@ activitiModule.service('RelatedContentService', ['$http', '$q', '$rootScope', '$
         this.addRelatedContentFromSource = function(taskId, processInstanceId, source, sourceId, name, link) {
             var url;
             if(taskId) {
-                url = ACTIVITI.CONFIG.contextRoot + '/app/rest/tasks/' + taskId + '/content';
+                url = ACTIVITI.CONFIG.contextRoot + '/rest/tasks/' + taskId + '/content';
             } else {
-                url = ACTIVITI.CONFIG.contextRoot + '/app/rest/content';
+                url = ACTIVITI.CONFIG.contextRoot + '/rest/content';
             }
 
             // Force a boolean value to be sent in the response body
@@ -135,7 +135,7 @@ activitiModule.service('RelatedContentService', ['$http', '$q', '$rootScope', '$
         };
 
         this.getRelatedContent = function(id) {
-            var url = ACTIVITI.CONFIG.contextRoot + '/app/rest/content/' + id;
+            var url = ACTIVITI.CONFIG.contextRoot + '/rest/content/' + id;
 
             var service = this;
             var deferred = $q.defer();
@@ -160,7 +160,7 @@ activitiModule.service('RelatedContentService', ['$http', '$q', '$rootScope', '$
 
         this.addUrlToContent = function(content) {
             if(content && content.id) {
-                content.rawUrl = ACTIVITI.CONFIG.contextRoot + '/app/rest/content/' + content.id + "/raw";
+                content.rawUrl = ACTIVITI.CONFIG.contextRoot + '/rest/content/' + content.id + "/raw";
 
                 var fileExtenstion = content.name.split('.').pop();
 
@@ -169,11 +169,11 @@ activitiModule.service('RelatedContentService', ['$http', '$q', '$rootScope', '$
                 }
 
                 if(content.thumbnailStatus == 'created') {
-                    content.thumbnailUrl  =  ACTIVITI.CONFIG.contextRoot + '/app/rest/content/' + content.id + "/rendition/thumbnail?noCache=" + new Date().getTime();
+                    content.thumbnailUrl  =  ACTIVITI.CONFIG.contextRoot + '/rest/content/' + content.id + "/rendition/thumbnail?noCache=" + new Date().getTime();
                 }
 
                 if(content.previewStatus == 'created') {
-                    content.pdfUrl =  ACTIVITI.CONFIG.contextRoot + '/app/rest/content/' + content.id + "/rendition/preview?noCache=" + new Date().getTime();
+                    content.pdfUrl =  ACTIVITI.CONFIG.contextRoot + '/rest/content/' + content.id + "/rendition/preview?noCache=" + new Date().getTime();
                 } else if (content.simpleType === 'image' || fileExtenstion === 'jpg' || fileExtenstion === 'jpeg' || fileExtenstion === 'png') {
                     content.imageUrl = content.rawUrl;
                     content.thumbnailUrl = content.rawUrl;

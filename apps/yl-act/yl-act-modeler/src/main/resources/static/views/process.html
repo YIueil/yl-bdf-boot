@@ -16,16 +16,16 @@
 	        </a>
 		</div>
 		<div class="btn-group pull-right">
-			<button type="button" class="btn btn-default" ng-click="editProcess()" ng-disabled="!model.process.latestVersion"
+			<button type="button" class="btn btn-default" ng-click="editProcess()"
 				title="{{'PROCESS.ACTION.EDIT' | translate}}">
 				<i class="glyphicon glyphicon-pencil"></i>
 			</button>
-            <button type="button" class="btn btn-default" ng-click="duplicateProcess()" ng-disabled="!model.process.latestVersion"
+            <button type="button" class="btn btn-default" ng-click="duplicateProcess()"
                     title="{{'PROCESS.ACTION.DUPLICATE' | translate}}">
                 <i class="editor-icon editor-icon-copy"></i>
             </button>
 			<button type="button" class="btn btn-default" ng-click="deleteProcess()" title="{{'PROCESS.ACTION.DELETE' | translate}}"
-				 title="{{'PROCESS.ACTION.DELETE' | translate}}" ng-disabled="!model.process.latestVersion">
+				 title="{{'PROCESS.ACTION.DELETE' | translate}}">
 				<i class="glyphicon glyphicon-trash"></i>
 			</button>
 		</div>		

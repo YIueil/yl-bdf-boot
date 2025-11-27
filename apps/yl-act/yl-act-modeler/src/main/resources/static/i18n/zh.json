@@ -1527,6 +1527,7 @@
 
   "TOOLBAR.ACTION.CLOSE": "关闭编辑器并返回概览页面",
   "TOOLBAR.ACTION.SAVE": "保存模型",
+  "TOOLBAR.ACTION.DEPLOY": "部署模型",
   "TOOLBAR.ACTION.VALIDATE": "验证模型",
   "TOOLBAR.ACTION.CUT": "剪切（选中业务流程中的一个或多个元素）",
   "TOOLBAR.ACTION.COPY": "复制（选中业务流程中的一个或多个元素）",

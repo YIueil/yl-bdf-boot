@@ -74,7 +74,7 @@ angular.module('activitiModeler').service('FormBuilderService', ['$http', '$q', 
                     data.formImageBase64 = extra_canvas.toDataURL("image/png");
 
                     delete Array.prototype.toJSON;
-                    $http({method: 'PUT', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/form-models/' + $rootScope.currentForm.id, data: data}).
+                    $http({method: 'PUT', url: ACTIVITI.CONFIG.contextRoot + '/rest/form-models/' + $rootScope.currentForm.id, data: data}).
                         success(function (response, status, headers, config) {
 
                             if (saveCallback) {
@@ -200,7 +200,7 @@ angular.module('activitiModeler').service('FormBuilderService', ['$http', '$q', 
 
         var _updateFormCache = function (stepId, formId) {
             if (stepId && formId) {
-                $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/form-models/' + formId}).
+                $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/rest/form-models/' + formId}).
                     success(function(response) {
                         if (response) {
                             var outcomes;
@@ -241,7 +241,7 @@ angular.module('activitiModeler').service('FormBuilderService', ['$http', '$q', 
                 }
                 formIdParams += 'version=' + Date.now();
 
-                $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/form-models/values?' + formIdParams}).
+                $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/rest/form-models/values?' + formIdParams}).
                     success(function (data) {
                         if (callback) {
                             callback(data);

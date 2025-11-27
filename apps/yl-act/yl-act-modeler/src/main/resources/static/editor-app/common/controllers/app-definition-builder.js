@@ -25,7 +25,7 @@ angular.module('activitiModeler')
     };
     
     $scope.loadApp = function() {
-    	$http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/app-definitions/' + $routeParams.modelId}).
+    	$http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/restapp-definitions/' + $routeParams.modelId}).
         	success(function(data, status, headers, config) {
         	    $rootScope.currentAppDefinition = data;
         	    if (!$rootScope.currentAppDefinition.definition.theme) {
@@ -186,7 +186,7 @@ angular.module('activitiModeler')
     $scope.loadModels = function() {
         $scope.popup.loading = true;
         
-        $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/models-for-app-definition'}).
+        $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/rest/models-for-app-definition'}).
           success(function(data, status, headers, config) {
               $scope.popup.models = data;
               $scope.popup.loading = false;

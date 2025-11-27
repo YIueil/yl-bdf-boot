@@ -221,19 +221,19 @@ var modelUrl;
 
 if (modelType == 'runtime') {
 	if (historyModelId) {
-    	modelUrl = ACTIVITI.CONFIG.contextRoot + '/app/rest/process-instances/history/' + historyModelId + '/model-json';
+    	modelUrl = ACTIVITI.CONFIG.contextRoot + '/restprocess-instances/history/' + historyModelId + '/model-json';
 	} else {
-    	modelUrl = ACTIVITI.CONFIG.contextRoot + '/app/rest/process-instances/' + modelId + '/model-json';
+    	modelUrl = ACTIVITI.CONFIG.contextRoot + '/restprocess-instances/' + modelId + '/model-json';
 	}
 } else if (modelType == 'design') {
 	if (historyModelId) {
-    	modelUrl = ACTIVITI.CONFIG.contextRoot + '/app/rest/models/' + modelId + '/history/' + historyModelId + '/model-json';
+    	modelUrl = ACTIVITI.CONFIG.contextRoot + '/rest/models/' + modelId + '/history/' + historyModelId + '/model-json';
 	} else {
-    	//modelUrl = ACTIVITI.CONFIG.contextRoot + '/app/rest/models/' + modelId + '/model-json';
+    	//modelUrl = ACTIVITI.CONFIG.contextRoot + '/rest/models/' + modelId + '/model-json';
         modelUrl = ACTIVITI.CONFIG.contextRoot + '/rest/models/' + modelId + '/model-json';
 	}
-} else if (modelType == 'process-definition') {modelUrl = ACTIVITI.CONFIG.contextRoot + '/app/rest/models/' + modelId + '/model-json';
-    modelUrl = ACTIVITI.CONFIG.contextRoot + '/app/rest/process-definitions/' + processDefinitionId + '/model-json';
+} else if (modelType == 'process-definition') {modelUrl = ACTIVITI.CONFIG.contextRoot + '/rest/models/' + modelId + '/model-json';
+    modelUrl = ACTIVITI.CONFIG.contextRoot + '/restprocess-definitions/' + processDefinitionId + '/model-json';
 }
 
 var request = jQuery.ajax({

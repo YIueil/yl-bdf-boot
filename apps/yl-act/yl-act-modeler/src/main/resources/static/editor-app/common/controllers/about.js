@@ -19,7 +19,7 @@ activitiApp.controller('AboutActivitiPopupCrtl', ['$rootScope', '$scope', '$http
         licenseHolder: ''
     };
 
-    $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/about-info'}).
+    $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/restabout-info'}).
         success(function(response, status, headers, config) {
             $scope.popup.licenseHolder = response.holder;
             $scope.popup.activitiVersion = response.versionInfo.edition + ' v' + response.versionInfo.majorVersion + '.' + response.versionInfo.minorVersion + '.' + response.versionInfo.revisionVersion;

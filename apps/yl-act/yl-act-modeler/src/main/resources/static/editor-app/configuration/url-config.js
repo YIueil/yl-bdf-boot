@@ -15,16 +15,20 @@ var KISBPM = KISBPM || {};
 KISBPM.URL = {
 
     getModel: function(modelId) {
-        //return ACTIVITI.CONFIG.contextRoot + '/app/rest/models/' + modelId + '/editor/json?version=' + Date.now();
+        //return ACTIVITI.CONFIG.contextRoot + '/rest/models/' + modelId + '/editor/json?version=' + Date.now();
         return ACTIVITI.CONFIG.contextRoot + '/rest/model/' + modelId + '/json?version=' + Date.now();
     },
 
     getStencilSet: function() {
-        return ACTIVITI.CONFIG.contextRoot + '/app/rest/stencil-sets/editor?version=' + Date.now();
+        return ACTIVITI.CONFIG.contextRoot + '/rest/stencil-sets/editor?version=' + Date.now();
     },
 
     putModel: function(modelId) {
-        //return ACTIVITI.CONFIG.contextRoot + '/app/rest/models/' + modelId + '/editor/json';
+        //return ACTIVITI.CONFIG.contextRoot + '/rest/models/' + modelId + '/editor/json';
         return ACTIVITI.CONFIG.contextRoot + '/rest/model/' + modelId + '/editor/json';
+    },
+
+    deployModel: function (modelId) {
+        return ACTIVITI.CONFIG.contextRoot + '/rest/model/' + modelId + '/editor/deploy';
     }
 };

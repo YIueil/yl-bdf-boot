@@ -41,7 +41,7 @@ angular.module('activitiModeler').service('UserService', ['$http', '$q',
 
             return httpAsPromise({
                 method: 'GET',
-                url: ACTIVITI.CONFIG.contextRoot + '/app/rest/workflow-users',
+                url: ACTIVITI.CONFIG.contextRoot + '/rest/workflow-users',
                 params: params
             });
         };
@@ -74,7 +74,7 @@ angular.module('activitiModeler').service('GroupService', ['$http', '$q',
 
             return httpAsPromise({
                 method: 'GET',
-                url: ACTIVITI.CONFIG.contextRoot + '/app/rest/editor-groups',
+                url: ACTIVITI.CONFIG.contextRoot + '/rest/editor-groups',
                 params: params
             });
         };

@@ -419,6 +419,10 @@ li.x-menu-list-item.x-menu-item-active a {
     margin: 12px 0 12px 0;
 }
 
+.warning {
+	background-color: #ec126a !important;
+}
+
 /* Editor icon font */
 .editor-icon {
 	position: relative;

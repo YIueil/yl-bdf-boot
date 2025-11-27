@@ -21,7 +21,7 @@ public class StencilSetController {
      * 获取编辑器组件及配置项信息
      * @return 配置项语言包
      */
-    @RequestMapping(value="/app/rest/stencil-sets/editor", method= RequestMethod.GET, produces="application/json")
+    @RequestMapping(value="/rest/stencil-sets/editor", method= RequestMethod.GET, produces="application/json")
     public JsonNode getStencilSetForEditor(HttpServletRequest request) {
         String acceptLanguage = request.getLocale().getLanguage();
         try {

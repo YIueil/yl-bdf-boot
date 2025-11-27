@@ -11,8 +11,6 @@ import org.activiti.bpmn.model.Process;
 import org.activiti.editor.language.json.converter.BpmnJsonConverter;
 import org.activiti.editor.language.json.converter.util.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -23,8 +21,6 @@ import java.util.List;
 @Component
 public class BpmnDisplayJsonConverter
 {
-
-    private static final Logger logger = LoggerFactory.getLogger(BpmnDisplayJsonConverter.class);
 
     protected BpmnJsonConverter bpmnJsonConverter = new BpmnJsonConverter();
     protected ObjectMapper objectMapper = new ObjectMapper();

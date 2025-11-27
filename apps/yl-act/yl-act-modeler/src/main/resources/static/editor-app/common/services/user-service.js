@@ -53,7 +53,7 @@ activitiModule.service('UserService', ['$http', '$q',
 
             return httpAsPromise({
                 method: 'GET',
-                url: ACTIVITI.CONFIG.contextRoot + '/app/rest/workflow-users',
+                url: ACTIVITI.CONFIG.contextRoot + '/rest/workflow-users',
                 params: params
             });
         };
@@ -78,7 +78,7 @@ activitiModule.service('UserService', ['$http', '$q',
             return httpAsPromise(
                 {
                     method: 'GET',
-                    url: ACTIVITI.CONFIG.contextRoot + '/app/rest/admin/users',
+                    url: ACTIVITI.CONFIG.contextRoot + '/rest/admin/users',
                     params: params
                 }
             )
@@ -96,7 +96,7 @@ activitiModule.service('UserService', ['$http', '$q',
             return httpAsPromise(
                 {
                     method: 'GET',
-                    url: ACTIVITI.CONFIG.contextRoot + '/app/rest/workflow-users/' + username + '/recent-users',
+                    url: ACTIVITI.CONFIG.contextRoot + '/rest/workflow-users/' + username + '/recent-users',
                     params: params
                 }
             );

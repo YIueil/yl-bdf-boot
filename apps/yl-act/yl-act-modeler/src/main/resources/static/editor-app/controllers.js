@@ -48,7 +48,7 @@ activitiApp.controller('AddAppDefinitionPopupCrtl', ['$rootScope', '$scope', '$h
         selectedApps: []
     };
     
-    $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/editor/app-definitions'}).
+    $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/rest/editor/app-definitions'}).
 	    success(function(response, status, headers, config) {
 	        $scope.popup.apps = response;
 	        $scope.popup.loading = false;
@@ -90,7 +90,7 @@ activitiApp.controller('AddAppDefinitionPopupCrtl', ['$rootScope', '$scope', '$h
 
         $scope.errorMessage = undefined;
 
-        $http({method: 'POST', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/runtime/app-definitions', data: data}).
+        $http({method: 'POST', url: ACTIVITI.CONFIG.contextRoot + '/rest/runtime/app-definitions', data: data}).
             success(function(response, status, headers, config) {
                 $scope.loadApps();
 

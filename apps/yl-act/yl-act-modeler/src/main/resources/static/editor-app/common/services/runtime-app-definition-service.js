@@ -152,7 +152,7 @@ activitiApp.service('RuntimeAppDefinitionService', ['$http', '$q', '$location', 
 
             return httpAsPromise({
                 method: 'GET',
-                url: ACTIVITI.CONFIG.contextRoot + '/app/rest/runtime/app-definitions',
+                url: ACTIVITI.CONFIG.contextRoot + '/rest/runtime/app-definitions',
                 transformResponse: transformAppsResponse
             });
         };
@@ -160,7 +160,7 @@ activitiApp.service('RuntimeAppDefinitionService', ['$http', '$q', '$location', 
         this.deleteAppDefinition = function (deploymentKey) {
             var promise = httpAsPromise({
                 method: 'DELETE',
-                url: ACTIVITI.CONFIG.contextRoot + '/app/rest/runtime/app-definitions/' + deploymentKey
+                url: ACTIVITI.CONFIG.contextRoot + '/rest/runtime/app-definitions/' + deploymentKey
             });
 
             return promise;

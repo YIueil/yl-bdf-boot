@@ -15,7 +15,7 @@
 var KISBPM = KISBPM || {};
 KISBPM.TOOLBAR = {
     ACTIONS: {
-    	
+
         saveModel: function (services) {
 
             _internalCreateModal({
@@ -24,6 +24,30 @@ KISBPM.TOOLBAR = {
                 template: 'editor-app/popups/save-model.html?version=' + Date.now(),
                 scope: services.$scope
             }, services.$modal, services.$scope);
+        },
+
+        deployModel: function (services) {
+            services.$http({
+                method: 'POST',
+                ignoreErrors: true,
+                headers: {'Accept': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                transformRequest: function (obj) {
+                    var str = [];
+                    for (var p in obj) {
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    }
+                    return str.join("&");
+                },
+                url: KISBPM.URL.deployModel(services.$rootScope.modelData.modelId)})
+                .success(function (data, status, headers, config) {
+                    console.log('部署成功')
+                    window.alert('部署成功')
+                })
+                .error(function (data, status, headers, config) {
+                    console.log('部署失败')
+                    window.alert('部署失败')
+                });
         },
 
         undo: function (services) {
@@ -374,7 +398,8 @@ angular.module('activitiModeler').controller('SaveModelCtrl', [ '$rootScope', '$
         }
 
         // Update
-        $http({    method: 'POST',
+        $http({
+            method: 'POST',
             data: params,
             ignoreErrors: true,
             headers: {'Accept': 'application/json',
@@ -387,7 +412,6 @@ angular.module('activitiModeler').controller('SaveModelCtrl', [ '$rootScope', '$
                 return str.join("&");
             },
             url: KISBPM.URL.putModel(modelMetaData.modelId)})
-
             .success(function (data, status, headers, config) {
                 $scope.editor.handleEvents({
                     type: ORYX.CONFIG.EVENT_SAVED
@@ -415,6 +439,8 @@ angular.module('activitiModeler').controller('SaveModelCtrl', [ '$rootScope', '$
                 // Execute any callback
                 if (successCallback) {
                     successCallback();
+                } else {
+                    window.alert('保存成功')
                 }
 
             })

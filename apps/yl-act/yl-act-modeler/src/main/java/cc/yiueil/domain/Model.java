@@ -62,6 +62,9 @@ public class Model {
     @Column(name = "thumbnail")
     private byte[] thumbnail;
 
+    @Column(name = "deployment_id")
+    private String deploymentId;
+
     public Model() {
         this.created = new Date();
     }

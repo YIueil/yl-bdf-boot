@@ -43,7 +43,7 @@ activitiModule.service('FunctionalGroupService', ['$http', '$q',
             return httpAsPromise(
                 {
                     method: 'GET',
-                    url: ACTIVITI.CONFIG.contextRoot + '/app/rest/editor-groups',
+                    url: ACTIVITI.CONFIG.contextRoot + '/rest/editor-groups',
                     params: params
                 }
             )

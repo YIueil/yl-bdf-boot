@@ -76,7 +76,7 @@ angular.module('activitiModeler')
 		    params.filterText = $scope.model.filterText;
 		  }
 
-		  //$http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/models134', params: params}).
+		  //$http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/rest/models134', params: params}).
           $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/rest/models', params: params}).
 		  	success(function(data, status, headers, config) {
 	    		$scope.model.processes = data;
@@ -169,7 +169,7 @@ angular.module('activitiModeler')
 
         $scope.model.loading = true;
 
-        //$http({method: 'POST', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/models',
+        //$http({method: 'POST', url: ACTIVITI.CONFIG.contextRoot + '/rest/models',
         $http({method: 'POST', url: ACTIVITI.CONFIG.contextRoot + '/rest/models', data: $scope.model.process}).
             success(function(data) {
                 $scope.$hide();
@@ -225,7 +225,7 @@ angular.module('activitiModeler')
 
         $scope.model.loading = true;
 
-        $http({method: 'POST', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/models/'+$scope.model.process.id+'/clone', data: $scope.model.process}).
+        $http({method: 'POST', url: ACTIVITI.CONFIG.contextRoot + '/rest/models/'+$scope.model.process.id+'/clone', data: $scope.model.process}).
             success(function(data) {
                 $scope.$hide();
 

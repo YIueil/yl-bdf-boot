@@ -99,7 +99,7 @@ angular.module('activitiModeler').controller('SaveAppDefinitionCtrl',
         
         delete Array.prototype.toJSON;
         delete $scope.conflict;
-        $http({method: 'PUT', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/app-definitions/' + $rootScope.currentAppDefinition.id, data: data}).
+        $http({method: 'PUT', url: ACTIVITI.CONFIG.contextRoot + '/rest/app-definitions/' + $rootScope.currentAppDefinition.id, data: data}).
             success(function(response, status, headers, config) {
                 // Regular error
                 if (response.error) {

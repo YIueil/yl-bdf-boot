@@ -15,7 +15,7 @@ angular.module('activitiModeler').controller('KisBpmFormReferenceDisplayCtrl',
     [ '$scope', '$modal', '$http', function($scope, $modal, $http) {
     
     if ($scope.property && $scope.property.value && $scope.property.value.id) {
-   		$http.get(ACTIVITI.CONFIG.contextRoot + '/app/rest/models/' + $scope.property.value.id)
+   		$http.get(ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $scope.property.value.id)
             .success(
                 function(response) {
                     $scope.form = {
@@ -174,7 +174,7 @@ angular.module('activitiModeler').controller('KisBpmFormReferencePopupCrtl',
 
         $scope.model.loading = true;
 
-        $http({method: 'POST', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/models', data: $scope.model.form}).
+        $http({method: 'POST', url: ACTIVITI.CONFIG.contextRoot + '/rest/models', data: $scope.model.form}).
             success(function(data, status, headers, config) {
                 
                 var newFormId = data.id;
@@ -253,7 +253,7 @@ angular.module('activitiModeler').controller('KisBpmFormReferencePopupCrtl',
 
     $scope.loadForms = function() {
         var modelMetaData = $scope.editor.getModelMetaData();
-        $http.get(ACTIVITI.CONFIG.contextRoot + '/app/rest/form-models')
+        $http.get(ACTIVITI.CONFIG.contextRoot + '/rest/form-models')
             .success(
                 function(response) {
                     $scope.state.loadingForms = false;

@@ -7,7 +7,7 @@
                     title="{{item.title | translate}}"
                     ng-repeat="item in items"
                     ng-switch on="item.type"
-                    class="btn btn-inverse" ng-class="{'separator': item.type == 'separator'}"
+                    class="btn btn-inverse" ng-class="{'separator': item.type == 'separator', 'warning': item.warning }"
                     ng-disabled="item.type == 'separator' || item.enabled == false"
                     ng-click="toolbarButtonClicked($index)">
         		<i ng-switch-when="button" ng-class="item.cssClass" class="toolbar-button" data-toggle="tooltip" title="{{item.title | translate}}"></i>
@@ -50,7 +50,7 @@
 	                         jqyoui-draggable="{onStart:'startDragCallback', onDrag:'dragCallback'}"
 	                         data-jqyoui-options="{revert: 'invalid', helper: 'clone', opacity : 0.5}">
 	                        <img ng-if="!item.customIcon" ng-src="editor-app/stencilsets/bpmn2.0/icons/{{item.icon}}" width="16px;" height="16px;"/>
-	                        <img ng-if="item.customIcon" ng-src="{{config.contextRoot}}/app/rest/image/{{item.icon}}" width="16px;" height="16px;"/>
+	                        <img ng-if="item.customIcon" ng-src="{{config.contextRoot}}/rest/image/{{item.icon}}" width="16px;" height="16px;"/>
 	                        {{item.name | translate}}
 	                    </li>
                     </ul>

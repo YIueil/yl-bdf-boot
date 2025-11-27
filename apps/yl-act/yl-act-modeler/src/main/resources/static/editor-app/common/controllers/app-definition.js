@@ -29,15 +29,15 @@ angular.module('activitiModeler')
     	var definitionUrl;
 
     	if ($routeParams.modelHistoryId) {
-    		url = ACTIVITI.CONFIG.contextRoot + '/app/rest/models/' + $routeParams.modelId
+    		url = ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $routeParams.modelId
     			+ '/history/' + $routeParams.modelHistoryId;
-    		definitionUrl = ACTIVITI.CONFIG.contextRoot + '/app/rest/app-definitions/' + $routeParams.modelId
+    		definitionUrl = ACTIVITI.CONFIG.contextRoot + '/restapp-definitions/' + $routeParams.modelId
                 + '/history/' + $routeParams.modelHistoryId;
     	} else {
-    		url = ACTIVITI.CONFIG.contextRoot + '/app/rest/models/' + $routeParams.modelId;
-    		definitionUrl = ACTIVITI.CONFIG.contextRoot + '/app/rest/app-definitions/' + $routeParams.modelId;
+    		url = ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $routeParams.modelId;
+    		definitionUrl = ACTIVITI.CONFIG.contextRoot + '/restapp-definitions/' + $routeParams.modelId;
 
-    		$scope.model.appExportUrl = ACTIVITI.CONFIG.contextRoot + '/app/rest/app-definitions/' + $routeParams.modelId +
+    		$scope.model.appExportUrl = ACTIVITI.CONFIG.contextRoot + '/restapp-definitions/' + $routeParams.modelId +
                 '/export?version=' + Date.now();
     	}
 
@@ -69,7 +69,7 @@ angular.module('activitiModeler')
         includeLatestVersion: !$scope.model.app.latestVersion
       };
 
-      $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/models/' + $scope.model.latestModelId + '/history', params: params}).
+      $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $scope.model.latestModelId + '/history', params: params}).
 	      success(function(data, status, headers, config) {
 	        if ($scope.model.app.latestVersion) {
 	          if (!data.data) {
@@ -199,7 +199,7 @@ angular.module('activitiModeler')
 
         delete $scope.popup.error;
 
-        $http({method: 'POST', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/app-definitions/' + $scope.model.app.id + '/publish', data: data}).
+        $http({method: 'POST', url: ACTIVITI.CONFIG.contextRoot + '/restapp-definitions/' + $scope.model.app.id + '/publish', data: data}).
             success(function(data, status, headers, config) {
                 $scope.$hide();
 
@@ -266,7 +266,7 @@ angular.module('activitiModeler')
             deleteRuntimeApp: true
         };
 
-        $http({method: 'DELETE', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/models/' + $scope.model.app.id, params: params}).
+        $http({method: 'DELETE', url: ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $scope.model.app.id, params: params}).
             success(function(data, status, headers, config) {
                 $scope.$hide();
                 $scope.popup.loading = false;
@@ -303,9 +303,9 @@ angular.module('activitiModeler')
 
           var url;
           if (isIE) {
-              url = ACTIVITI.CONFIG.contextRoot + '/app/rest/app-definitions/' + $scope.model.app.id + '/text/import?renewIdmEntries=' + $scope.popup.renewIdmIds;
+              url = ACTIVITI.CONFIG.contextRoot + '/restapp-definitions/' + $scope.model.app.id + '/text/import?renewIdmEntries=' + $scope.popup.renewIdmIds;
           } else {
-              url = ACTIVITI.CONFIG.contextRoot + '/app/rest/app-definitions/' + $scope.model.app.id + '/import?renewIdmEntries=' + $scope.popup.renewIdmIds;
+              url = ACTIVITI.CONFIG.contextRoot + '/restapp-definitions/' + $scope.model.app.id + '/import?renewIdmEntries=' + $scope.popup.renewIdmIds;
           }
 
           Upload.upload({

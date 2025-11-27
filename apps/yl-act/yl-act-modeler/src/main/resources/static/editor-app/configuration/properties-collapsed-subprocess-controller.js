@@ -58,7 +58,7 @@ angular.module('activitiModeler').controller('KisBpmCollapsedSubprocessReference
     
     $scope.loadProcesses = function() {
    	 
-    	$http.get(ACTIVITI.CONFIG.contextRoot + '/app/rest/models?filter=myprocesses')
+    	$http.get(ACTIVITI.CONFIG.contextRoot + '/rest/models?filter=myprocesses')
     		.success(
     			function(response) {
     				$scope.state.loadingSubprocesses = false;

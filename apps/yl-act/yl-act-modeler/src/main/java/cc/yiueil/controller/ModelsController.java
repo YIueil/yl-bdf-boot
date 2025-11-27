@@ -49,15 +49,16 @@ public class ModelsController {
 
     /**
      * 查询流程模型列表
-     * @param filter 过滤条件
-     * @param sort 排序
+     *
+     * @param filter    过滤条件
+     * @param sort      排序
      * @param modelType 模型类型
-     * @param request 请求体
+     * @param request   请求体
      * @return 查询的模型列表集合
      */
     @RequestMapping(value = "/rest/models", method = RequestMethod.GET, produces = "application/json")
     @ResponseStatus(value = HttpStatus.OK)
-    public ResultListDataRepresentation getModels(@RequestParam(required=false) String filter, @RequestParam(required=false) String sort, @RequestParam(required=false) Integer modelType, HttpServletRequest request) {
+    public ResultListDataRepresentation getModels(@RequestParam(required = false) String filter, @RequestParam(required = false) String sort, @RequestParam(required = false) Integer modelType, HttpServletRequest request) {
         String filterText = null;
         List<NameValuePair> params = URLEncodedUtils.parse(request.getQueryString(), StandardCharsets.UTF_8);
         if (params != null) {
@@ -81,12 +82,13 @@ public class ModelsController {
 
     /**
      * 创建流程模型
+     *
      * @param jsonMap 流程模型参数集合
      * @return 创建的模型信息
      */
     @RequestMapping(value = "/rest/models", method = RequestMethod.POST, produces = "application/json")
     @ResponseStatus(value = HttpStatus.OK)
-    public Model createModel(@RequestBody Map<String,String> jsonMap) {
+    public Model createModel(@RequestBody Map<String, String> jsonMap) {
         Model model = new Model();
         model.setKey(jsonMap.get("key"));
         model.setName(jsonMap.get("name"));
@@ -99,10 +101,11 @@ public class ModelsController {
 
     /**
      * 获取流程模型缩列图
+     *
      * @param modelId 模型id
      * @return 模型缩略图的 byte[]
      */
-    @RequestMapping(value={"/rest/models/{modelId}/thumbnail"}, method=RequestMethod.GET, produces="image/png")
+    @RequestMapping(value = {"/rest/models/{modelId}/thumbnail"}, method = RequestMethod.GET, produces = "image/png")
     @ResponseStatus(value = HttpStatus.OK)
     public byte[] getModelThumbnail(@PathVariable String modelId) {
         Optional<Model> optional = this.modelRepository.findById(modelId);
@@ -112,10 +115,11 @@ public class ModelsController {
 
     /**
      * 根据modelId查询流程模型
+     *
      * @param modelId 模型id
      * @return Model
      */
-    @RequestMapping(value="/rest/models/{modelId}", method=RequestMethod.GET)
+    @RequestMapping(value = "/rest/models/{modelId}", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     public Model getModel(@PathVariable String modelId) {
         Optional<Model> optional = this.modelRepository.findById(modelId);
@@ -124,10 +128,11 @@ public class ModelsController {
 
     /**
      * 根据modelId查询流程模型的JSON内容
+     *
      * @param modelId 模型id
      * @return 模型json信息
      */
-    @RequestMapping(value="/rest/models/{modelId}/model-json", method=RequestMethod.GET, produces="application/json")
+    @RequestMapping(value = "/rest/models/{modelId}/model-json", method = RequestMethod.GET, produces = "application/json")
     @ResponseStatus(value = HttpStatus.OK)
     public JsonNode getModelJSON(@PathVariable String modelId) {
         ObjectNode displayNode = this.objectMapper.createObjectNode();
@@ -139,11 +144,12 @@ public class ModelsController {
 
     /**
      * 导入流程定义xml文件
+     *
      * @param request 请求体
-     * @param file 文件
+     * @param file    文件
      * @return 生成的模型信息
      */
-    @RequestMapping(value="rest/import-process-model", method=RequestMethod.POST, produces="application/json")
+    @RequestMapping(value = "rest/import-process-model", method = RequestMethod.POST, produces = "application/json")
     @ResponseStatus(value = HttpStatus.OK)
     public Model importProcessModel(HttpServletRequest request, MultipartFile file) {
         String fileName = file.getOriginalFilename();

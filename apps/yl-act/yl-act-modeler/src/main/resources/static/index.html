@@ -42,7 +42,7 @@
         <div class="navbar-header">
             <a ng-click="backToLanding()" class="landing-logo" ng-if="account != null && account != undefined" title="{{'GENERAL.MAIN-TITLE' | translate}}">
                 <img ng-if="account.tenantPictureId && account.tenantId"
-                     ng-src="{{restRootUrl()}}/app/rest/tenants/{{account.tenantId}}/logo">
+                     ng-src="{{restRootUrl()}}/rest/tenants/{{account.tenantId}}/logo">
 
                 <img ng-if="!account.tenantPictureId" ng-src="{{appResourceRoot}}../images/activiti-logo.png">
             </a>

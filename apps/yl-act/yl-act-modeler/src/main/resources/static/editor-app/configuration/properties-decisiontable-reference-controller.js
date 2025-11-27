@@ -184,7 +184,7 @@ angular.module('activitiModeler').controller('ActivitiDecisionTableReferencePopu
 
             $http({
                 method: 'POST',
-                url: ACTIVITI.CONFIG.contextRoot + '/app/rest/models',
+                url: ACTIVITI.CONFIG.contextRoot + '/rest/models',
                 data: $scope.model.decisionTable
             }).
             success(function(data, status, headers, config) {
@@ -277,7 +277,7 @@ angular.module('activitiModeler').controller('ActivitiDecisionTableReferencePopu
 
         $scope.loadDecisionTables = function() {
             var modelMetaData = $scope.editor.getModelMetaData();
-            $http.get(ACTIVITI.CONFIG.contextRoot + '/app/rest/decision-table-models')
+            $http.get(ACTIVITI.CONFIG.contextRoot + '/rest/decision-table-models')
                 .success(
                     function(response) {
                         $scope.state.loadingDecisionTables = false;

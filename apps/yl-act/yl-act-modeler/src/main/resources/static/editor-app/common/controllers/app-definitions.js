@@ -74,7 +74,7 @@ angular.module('activitiModeler')
 		    params.filterText = $scope.model.filterText;
 		  }
 
-		  $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/models', params: params}).
+		  $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/rest/models', params: params}).
 		  	success(function(data, status, headers, config) {
 	    		$scope.model.apps = data;
 	    		$scope.model.loading = false;
@@ -161,7 +161,7 @@ angular.module('activitiModeler')
 
             $scope.model.loading = true;
 
-            $http({method: 'POST', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/models', data: $scope.model.app}).
+            $http({method: 'POST', url: ACTIVITI.CONFIG.contextRoot + '/rest/models', data: $scope.model.app}).
                 success(function (data, status, headers, config) {
                     $scope.$hide();
 
@@ -221,7 +221,7 @@ angular.module('activitiModeler')
 
             $scope.model.loading = true;
 
-            $http({method: 'POST', url: ACTIVITI.CONFIG.contextRoot + '/app/rest/models/'+$scope.model.app.id+'/clone', data: $scope.model.app}).
+            $http({method: 'POST', url: ACTIVITI.CONFIG.contextRoot + '/rest/models/'+$scope.model.app.id+'/clone', data: $scope.model.app}).
                 success(function (data, status, headers, config) {
                     $scope.$hide();
 
@@ -264,9 +264,9 @@ angular.module('activitiModeler')
 
           var url;
           if (isIE) {
-             url = ACTIVITI.CONFIG.contextRoot + '/app/rest/app-definitions/text/import?renewIdmEntries=' + $scope.model.renewIdmIds;
+             url = ACTIVITI.CONFIG.contextRoot + '/restapp-definitions/text/import?renewIdmEntries=' + $scope.model.renewIdmIds;
           } else {
-              url = ACTIVITI.CONFIG.contextRoot + '/app/rest/app-definitions/import?renewIdmEntries=' + $scope.model.renewIdmIds;
+              url = ACTIVITI.CONFIG.contextRoot + '/restapp-definitions/import?renewIdmEntries=' + $scope.model.renewIdmIds;
           }
           Upload.upload({
               url: url,
