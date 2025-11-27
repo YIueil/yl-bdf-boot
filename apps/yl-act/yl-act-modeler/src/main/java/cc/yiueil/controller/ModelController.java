@@ -98,6 +98,7 @@ public class ModelController implements BaseController{
         model.setKey(key);
         model.setDescription(description);
         model.setModelEditorJson(json);
+        model.setModelType(Model.MODEL_TYPE_BPMN);
         model.setVersion(1);
         ObjectNode jsonNode;
         try {

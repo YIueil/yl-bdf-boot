@@ -5,6 +5,7 @@ import cc.yiueil.converter.BpmnDisplayJsonConverter;
 import cc.yiueil.domain.Model;
 import cc.yiueil.exception.BusinessException;
 import cc.yiueil.repository.ModelRepository;
+import cc.yiueil.util.BeanUtils;
 import cc.yiueil.util.XmlUtil;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -87,22 +88,58 @@ public class ModelsController implements BaseController{
     @RequestMapping(value = "/rest/models", method = RequestMethod.POST, produces = "application/json")
     @ResponseStatus(value = HttpStatus.OK)
     public Model createModel(@RequestBody Map<String, String> jsonMap) {
-        String key = jsonMap.get("key");
         String name = jsonMap.get("name");
-        String description = jsonMap.get("description");
-        Integer modelType = Integer.valueOf(jsonMap.get("modelType"));
+
         if (this.modelRepository.existsByName(name)) {
             throw new BusinessException("模型名称重复！");
         }
 
         Model model = new Model();
-        model.setKey(key);
+        model.setKey(jsonMap.get("key"));
         model.setName(name);
-        model.setDescription(description);
-        model.setModelType(modelType);
+        model.setDescription(jsonMap.get("description"));
+        model.setModelType(Integer.valueOf(jsonMap.get("modelType")));
+        model.setVersion(1);
         createObjectNode(model);
         model = this.modelRepository.save(model);
         return model;
+    }
+
+
+    /**
+     * 克隆模型
+     * @param jsonMap 流程模型参数集合
+     * @return 克隆的模型信息
+     */
+    @RequestMapping(value = "/rest/models/{modelId}/clone", method = RequestMethod.POST, produces = "application/json")
+    @ResponseStatus(value = HttpStatus.OK)
+    public Model cloneModel(@PathVariable String modelId, @RequestBody Map<String, String> jsonMap) {
+        Model originModel = modelRepository.findById(modelId).orElseThrow();
+        Model newModel = new Model();
+
+        newModel.setModelEditorJson(originModel.getModelEditorJson());
+        newModel.setThumbnail(originModel.getThumbnail());
+
+        String name = jsonMap.get("name");
+
+        if (this.modelRepository.existsByName(name)) {
+            throw new BusinessException("模型名称重复！");
+        }
+
+        String key = jsonMap.get("key");
+        String description = jsonMap.get("description");
+        Integer modelType = Integer.valueOf(jsonMap.get("modelType"));
+
+        newModel.setKey(key);
+        newModel.setName(name);
+        newModel.setDescription(description);
+        newModel.setModelType(modelType);
+        newModel.setVersion(1);
+
+        createObjectNode(newModel);
+
+        newModel = this.modelRepository.save(newModel);
+        return newModel;
     }
 
     /**
@@ -188,7 +225,7 @@ public class ModelsController implements BaseController{
         if (fileName != null && (fileName.endsWith(".bpmn") || fileName.endsWith(".bpmn20.xml"))) {
             try {
                 XMLInputFactory xif = XmlUtil.createSafeXmlInputFactory();
-                InputStreamReader xmlIn = new InputStreamReader(file.getInputStream(), "UTF-8");
+                InputStreamReader xmlIn = new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8);
                 XMLStreamReader xtr = xif.createXMLStreamReader(xmlIn);
                 BpmnXMLConverter bpmnXmlConverter = new BpmnXMLConverter();
                 BpmnModel bpmnModel = bpmnXmlConverter.convertToBpmnModel(xtr);

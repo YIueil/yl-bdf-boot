@@ -76,7 +76,6 @@ angular.module('activitiModeler')
                 params.filterText = $scope.model.filterText;
             }
 
-            //$http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/rest/models134', params: params}).
             $http({
                 method: 'GET',
                 url: ACTIVITI.CONFIG.contextRoot + '/rest/models',
@@ -139,6 +138,30 @@ angular.module('activitiModeler')
             }
         };
 
+        $scope.copyProcessDetails = function (process) {
+            const modalInstance = _internalCreateModal({
+                template: 'views/popup/process-duplicate.html?version=' + Date.now()
+            }, $modal, $scope);
+
+            modalInstance.$scope.originalModel = {
+                process: process
+            }
+        }
+
+        $scope.exportProcessDetails = function (process) {
+            const bpmn20DownloadUrl = ACTIVITI.CONFIG.contextRoot + '/rest/models/' + process.id + '/bpmn20?version=' + Date.now();
+            window.open(bpmn20DownloadUrl, '_blank')
+        }
+
+        $scope.deleteProcessDetails = function (process) {
+            $scope.process = process
+            _internalCreateModal({
+                template: 'views/popup/model-delete.html',
+                scope: $scope
+            }, $modal, $scope);
+        }
+
+
         // Finally, load initial processes
         $scope.loadProcesses();
     }]);
@@ -152,7 +175,7 @@ angular.module('activitiModeler')
                 loading: false,
                 process: {
                     name: '',
-                    key: "PROCESS_" + Date.now(), // 直接使用时间戳生成 KEY, 避免部署的时候 KEY 不合法
+                    key: 'PROCESS_' + Date.now(), // 直接使用时间戳生成 KEY, 避免部署的时候 KEY 不合法
                     description: '',
                     modelType: 0
                 }
@@ -205,7 +228,7 @@ angular.module('activitiModeler')
                 loading: false,
                 process: {
                     name: '',
-                    key: '',
+                    key: 'PROCESS_' + Date.now(),
                     description: '',
                     modelType: ''
                 }
@@ -213,7 +236,7 @@ angular.module('activitiModeler')
 
             if ($scope.originalModel) {
                 //clone the model
-                $scope.model.process.name = $scope.originalModel.process.name;
+                $scope.model.process.name = $scope.originalModel.process.name + '_copy';
                 $scope.model.process.key = $scope.originalModel.process.key;
                 $scope.model.process.description = $scope.originalModel.process.description;
                 $scope.model.process.id = $scope.originalModel.process.id;
@@ -243,7 +266,7 @@ angular.module('activitiModeler')
                     $location.path("/editor/" + data.id);
                 }).error(function () {
                     $scope.model.loading = false;
-                    $modal.$hide();
+                    $rootScope.addAlert('复制失败, 可能模型名称重复!', 'error')
                 });
             };
 

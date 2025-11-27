@@ -17,13 +17,51 @@ KISBPM.TOOLBAR = {
     ACTIONS: {
 
         saveModel: function (services) {
+            const modelData = services.$rootScope.modelData;
 
-            _internalCreateModal({
-                backdrop: true,
-                keyboard: true,
-                template: 'editor-app/popups/save-model.html?version=' + Date.now(),
-                scope: services.$scope
-            }, services.$modal, services.$scope);
+            let json = services.$rootScope.editor.getJSON();
+            json = JSON.stringify(json);
+
+            const params = {
+                name: modelData.name,
+                key: modelData.key,
+                description: modelData.description,
+                json_xml: json,
+                lastUpdated: Date.now()
+            };
+
+            services.$http({
+                method: 'POST',
+                data: params,
+                ignoreErrors: true,
+                headers: {'Accept': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                transformRequest: function (obj) {
+                    const str = [];
+                    for (const p in obj) {
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    }
+                    return str.join("&");
+                },
+                url: KISBPM.URL.putModel(modelData.modelId)})
+                .success(function (data, status, headers, config) {
+                    services.$rootScope.editor.handleEvents({
+                        type: ORYX.CONFIG.EVENT_SAVED
+                    });
+
+                    // Fire event to all who is listening
+                    const saveEvent = {
+                        type: KISBPM.eventBus.EVENT_TYPE_MODEL_SAVED,
+                        model: params,
+                        modelId: modelData.modelId,
+                        eventType: 'update-model'
+                    };
+                    KISBPM.eventBus.dispatch(KISBPM.eventBus.EVENT_TYPE_MODEL_SAVED, saveEvent);
+                    services.$rootScope.addAlert('保存成功', 'info');
+                })
+                .error(function (data, status, headers, config) {
+                    services.$rootScope.addAlert('保存失败', 'error');
+                });
         },
 
         deployModel: function (services) {
@@ -41,12 +79,10 @@ KISBPM.TOOLBAR = {
                 },
                 url: KISBPM.URL.deployModel(services.$rootScope.modelData.modelId)})
                 .success(function (data, status, headers, config) {
-                    console.log('部署成功')
-                    window.alert('部署成功')
+                    services.$rootScope.addAlert('部署成功', 'info');
                 })
                 .error(function (data, status, headers, config) {
-                    console.log('部署失败')
-                    window.alert('部署失败')
+                    services.$rootScope.addAlert('部署失败', 'error');
                 });
         },
 
@@ -361,8 +397,8 @@ angular.module('activitiModeler').controller('SaveModelCtrl', [ '$rootScope', '$
     
     $scope.save = function (successCallback) {
 
-        if (!$scope.saveDialog.name || $scope.saveDialog.name.length == 0 ||
-        	!$scope.saveDialog.key || $scope.saveDialog.key.length == 0) {
+        if (!$scope.saveDialog.name || $scope.saveDialog.name.length === 0 ||
+        	!$scope.saveDialog.key || $scope.saveDialog.key.length === 0) {
         	
             return;
         }

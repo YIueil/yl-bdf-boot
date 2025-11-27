@@ -13,99 +13,104 @@
 'use strict';
 
 angular.module('activitiModeler')
-.controller('EditModelPopupCrtl', ['$rootScope', '$scope', '$http', '$translate', '$location',
-    function ($rootScope, $scope, $http, $translate, $location) {
+    .controller('EditModelPopupCrtl', ['$rootScope', '$scope', '$http', '$translate', '$location',
+        function ($rootScope, $scope, $http, $translate, $location) {
 
-        var model;
-        var popupType;
-        if ($scope.model.process) {
-            model = $scope.model.process;
-            popupType = 'PROCESS';
-        } else if ($scope.model.form) {
-            model = $scope.model.form;
-            popupType = 'FORM';
-        } else if ($scope.model.decisionTable) {
-            model = $scope.model.decisionTable;
-            popupType = 'DECISION-TABLE';
-        } else {
-            model = $scope.model.app;
-            popupType = 'APP';
-        }
+            var model;
+            var popupType;
+            if ($scope.model.process) {
+                model = $scope.model.process;
+                popupType = 'PROCESS';
+            } else if ($scope.model.form) {
+                model = $scope.model.form;
+                popupType = 'FORM';
+            } else if ($scope.model.decisionTable) {
+                model = $scope.model.decisionTable;
+                popupType = 'DECISION-TABLE';
+            } else {
+                model = $scope.model.app;
+                popupType = 'APP';
+            }
 
-    	$scope.popup = {
-    		loading: false,
-    		popupType: popupType,
-        	modelName: model.name,
-        	modelKey: model.key,
-        	modelDescription: model.description,
-    		id: model.id
-    	};
+            $scope.popup = {
+                loading: false,
+                popupType: popupType,
+                modelName: model.name,
+                modelKey: model.key,
+                modelDescription: model.description,
+                id: model.id
+            };
 
-    	$scope.ok = function () {
+            $scope.ok = function () {
 
-    		if (!$scope.popup.modelName || $scope.popup.modelName.length == 0 ||
-    			!$scope.popup.modelKey || $scope.popup.modelKey.length == 0) {
-    			
-    			return;
-    		}
+                if (!$scope.popup.modelName || $scope.popup.modelName.length == 0 ||
+                    !$scope.popup.modelKey || $scope.popup.modelKey.length == 0) {
 
-        	$scope.model.name = $scope.popup.modelName;
-        	$scope.model.key = $scope.popup.modelKey;
-        	$scope.model.description = $scope.popup.modelDescription;
+                    return;
+                }
 
-    		$scope.popup.loading = true;
-    		var updateData = {
-    			name: $scope.model.name, 
-    			key: $scope.model.key, description: 
-    			$scope.model.description
-    		};
+                $scope.model.name = $scope.popup.modelName;
+                $scope.model.key = $scope.popup.modelKey;
+                $scope.model.description = $scope.popup.modelDescription;
 
-    		$http({method: 'PUT', url: ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $scope.popup.id, data: updateData}).
-    			success(function(data, status, headers, config) {
-    				if ($scope.model.process) {
-    					$scope.model.process = data;
-    				} else if ($scope.model.form) {
-    					$scope.model.form = data;
-    				} else if ($scope.model.decisionTable) {
-    					$scope.model.decisionTable = data;
-    				} else {
-    					$scope.model.app = data;
-    				}
+                $scope.popup.loading = true;
+                var updateData = {
+                    name: $scope.model.name,
+                    key: $scope.model.key, description:
+                    $scope.model.description
+                };
 
-    				$scope.addAlertPromise($translate('PROCESS.ALERT.EDIT-CONFIRM'), 'info');
-    				$scope.$hide();
-    				$scope.popup.loading = false;
-
-    				if (popupType === 'FORM') {
-                        $location.path("/forms/" +  $scope.popup.id);
-                    } else if (popupType === 'APP') {
-                        $location.path("/apps/" +  $scope.popup.id);
-                    } else if (popupType === 'DECISION-TABLE') {
-                        $location.path("/decision-tables/" +  $scope.popup.id);
+                $http({
+                    method: 'PUT',
+                    url: ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $scope.popup.id,
+                    data: updateData
+                }).success(function (data, status, headers, config) {
+                    if ($scope.model.process) {
+                        $scope.model.process = data;
+                    } else if ($scope.model.form) {
+                        $scope.model.form = data;
+                    } else if ($scope.model.decisionTable) {
+                        $scope.model.decisionTable = data;
                     } else {
-                        $location.path("/processes/" +  $scope.popup.id);
+                        $scope.model.app = data;
                     }
 
-    			}).
-    			error(function(data, status, headers, config) {
-    				$scope.popup.loading = false;
-    				$scope.popup.errorMessage = data.message;
-    			});
-    	};
+                    $scope.addAlertPromise($translate('PROCESS.ALERT.EDIT-CONFIRM'), 'info');
+                    $scope.$hide();
+                    $scope.popup.loading = false;
 
-    	$scope.cancel = function () {
-    		if (!$scope.popup.loading) {
-    			$scope.$hide();
-    		}
-    	};
-}]);
+                    if (popupType === 'FORM') {
+                        $location.path("/forms/" + $scope.popup.id);
+                    } else if (popupType === 'APP') {
+                        $location.path("/apps/" + $scope.popup.id);
+                    } else if (popupType === 'DECISION-TABLE') {
+                        $location.path("/decision-tables/" + $scope.popup.id);
+                    } else {
+                        $location.path("/processes/" + $scope.popup.id);
+                    }
+
+                }).error(function (data, status, headers, config) {
+                    $scope.popup.loading = false;
+                    $scope.popup.errorMessage = data.message;
+                });
+            };
+
+            $scope.cancel = function () {
+                if (!$scope.popup.loading) {
+                    $scope.$hide();
+                }
+            };
+        }]);
 
 angular.module('activitiModeler')
     .controller('DeleteModelPopupCrtl', ['$rootScope', '$scope', '$http', '$translate', function ($rootScope, $scope, $http, $translate) {
 
         var model;
         var popupType;
-        if ($scope.model.process) {
+        if ($scope.process) {
+            model = $scope.process
+            popupType = 'PROCESS';
+        } else if ($scope.model.process) {
             model = $scope.model.process;
             popupType = 'PROCESS';
         } else if ($scope.model.form) {
@@ -128,16 +133,17 @@ angular.module('activitiModeler')
         };
 
         // Loading relations when opening
-        $http({method: 'GET', url: ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $scope.popup.model.id + '/parent-relations'}).
-            success(function (data, status, headers, config) {
-                $scope.popup.loading = false;
-                $scope.popup.loadingRelations = false;
-                $scope.popup.relations = data;
-            }).
-            error(function (data, status, headers, config) {
-                $scope.$hide();
-                $scope.popup.loading = false;
-            });
+        $http({
+            method: 'GET',
+            url: ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $scope.popup.model.id + '/parent-relations'
+        }).success(function (data, status, headers, config) {
+            $scope.popup.loading = false;
+            $scope.popup.loadingRelations = false;
+            $scope.popup.relations = data;
+        }).error(function (data, status, headers, config) {
+            $scope.$hide();
+            $scope.popup.loading = false;
+        });
 
         $scope.ok = function () {
             $scope.popup.loading = true;
@@ -146,17 +152,24 @@ angular.module('activitiModeler')
                 cascade: $scope.popup.cascade === 'true'
             };
 
-            $http({method: 'DELETE', url: ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $scope.popup.model.id, params: params}).
-                success(function (data, status, headers, config) {
-                    $scope.$hide();
-                    $scope.popup.loading = false;
-                    $scope.addAlertPromise($translate(popupType + '.ALERT.DELETE-CONFIRM'), 'info');
+            $http({
+                method: 'DELETE',
+                url: ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $scope.popup.model.id,
+                params: params
+            }).success(function (data, status, headers, config) {
+                $scope.$hide();
+                $scope.popup.loading = false;
+                $scope.addAlertPromise($translate(popupType + '.ALERT.DELETE-CONFIRM'), 'info');
+                if ($scope.loadProcesses) {
+                    $scope.loadProcesses();
+                }
+                if ($scope.returnToList) {
                     $scope.returnToList();
-                }).
-                error(function (data, status, headers, config) {
-                    $scope.$hide();
-                    $scope.popup.loading = false;
-                });
+                }
+            }).error(function (data, status, headers, config) {
+                $scope.$hide();
+                $scope.popup.loading = false;
+            });
         };
 
         $scope.cancel = function () {
@@ -167,52 +180,55 @@ angular.module('activitiModeler')
     }]);
 
 angular.module('activitiModeler')
-.controller('UseAsNewVersionPopupCrtl', ['$rootScope', '$scope', '$http', '$translate', '$location', function ($rootScope, $scope, $http, $translate, $location) {
+    .controller('UseAsNewVersionPopupCrtl', ['$rootScope', '$scope', '$http', '$translate', '$location', function ($rootScope, $scope, $http, $translate, $location) {
 
-	var model;
-	var popupType;
-	if ($scope.model.process) {
-		model = $scope.model.process;
-		popupType = 'PROCESS';
-	} else if ($scope.model.form) {
-        model = $scope.model.form;
-        popupType = 'FORM';
-    } else if ($scope.model.decisionTable) {
-        model = $scope.model.decisionTable;
-        popupType = 'DECISION-TABLE';
-    } else {
-        model = $scope.model.app;
-        popupType = 'APP';
-    }
+        var model;
+        var popupType;
+        if ($scope.model.process) {
+            model = $scope.model.process;
+            popupType = 'PROCESS';
+        } else if ($scope.model.form) {
+            model = $scope.model.form;
+            popupType = 'FORM';
+        } else if ($scope.model.decisionTable) {
+            model = $scope.model.decisionTable;
+            popupType = 'DECISION-TABLE';
+        } else {
+            model = $scope.model.app;
+            popupType = 'APP';
+        }
 
-	$scope.popup = {
-		loading: false,
-		model: model,
-		popupType: popupType,
-		latestModelId: $scope.model.latestModelId,
-		comment: ''
-	};
+        $scope.popup = {
+            loading: false,
+            model: model,
+            popupType: popupType,
+            latestModelId: $scope.model.latestModelId,
+            comment: ''
+        };
 
-	$scope.ok = function () {
-		$scope.popup.loading = true;
+        $scope.ok = function () {
+            $scope.popup.loading = true;
 
-		var actionData = {
-			action: 'useAsNewVersion',
-			comment: $scope.popup.comment
-		};
+            var actionData = {
+                action: 'useAsNewVersion',
+                comment: $scope.popup.comment
+            };
 
-		$http({method: 'POST', url: ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $scope.popup.latestModelId + '/history/' + $scope.popup.model.id, data: actionData}).
-			success(function(data, status, headers, config) {
+            $http({
+                method: 'POST',
+                url: ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $scope.popup.latestModelId + '/history/' + $scope.popup.model.id,
+                data: actionData
+            }).success(function (data, status, headers, config) {
 
-                var backToOverview = function() {
+                var backToOverview = function () {
                     if (popupType === 'FORM') {
-                        $location.path("/forms/" +  $scope.popup.latestModelId);
+                        $location.path("/forms/" + $scope.popup.latestModelId);
                     } else if (popupType === 'APP') {
-                        $location.path("/apps/" +  $scope.popup.latestModelId);
+                        $location.path("/apps/" + $scope.popup.latestModelId);
                     } else if (popupType === 'DECISION-TABLE') {
-                        $location.path("/decision-tables/" +  $scope.popup.latestModelId);
+                        $location.path("/decision-tables/" + $scope.popup.latestModelId);
                     } else {
-                        $location.path("/processes/" +  $scope.popup.latestModelId);
+                        $location.path("/processes/" + $scope.popup.latestModelId);
                     }
                 };
 
@@ -225,7 +241,7 @@ angular.module('activitiModeler')
                     $scope.popup.foundUnresolvedModels = true;
                     $scope.popup.unresolvedModels = data.unresolvedModels;
 
-                    $scope.close = function() {
+                    $scope.close = function () {
                         $scope.$hide();
                         backToOverview();
                     };
@@ -243,25 +259,24 @@ angular.module('activitiModeler')
 
                 }
 
-			}).
-			error(function(data, status, headers, config) {
-				$scope.$hide();
-				$scope.popup.loading = false;
-			});
-	};
+            }).error(function (data, status, headers, config) {
+                $scope.$hide();
+                $scope.popup.loading = false;
+            });
+        };
 
-	$scope.cancel = function () {
-		if (!$scope.popup.loading) {
-			$scope.$hide();
-		}
-	};
-}]);
+        $scope.cancel = function () {
+            if (!$scope.popup.loading) {
+                $scope.$hide();
+            }
+        };
+    }]);
 
 /**
  * The controller for driving the share model popup.
  */
 angular.module('activitiModeler')
-	.controller('ShareModelPopupCrtl', ['$rootScope', '$scope', '$http', '$timeout', '$translate', 'UserService',
+    .controller('ShareModelPopupCrtl', ['$rootScope', '$scope', '$http', '$timeout', '$translate', 'UserService',
         function ($rootScope, $scope, $http, $timeout, $translate, UserService) {
 
             var model = $scope.model.app;
@@ -282,27 +297,25 @@ angular.module('activitiModeler')
             // Fetch the share info from the server
             var shareInfoUrl = ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $scope.popup.model.id + '/share-info';
 
-            $http({method: 'GET', url: shareInfoUrl}).
-                success(function (data, status, headers, config) {
-                    $scope.popup.shareInfo = data;
+            $http({method: 'GET', url: shareInfoUrl}).success(function (data, status, headers, config) {
+                $scope.popup.shareInfo = data;
 
-                    // Get user ids. Used in the people picker to filter out users
-                    $scope.currentlySharedUserIds = [];
+                // Get user ids. Used in the people picker to filter out users
+                $scope.currentlySharedUserIds = [];
 
-                    if (data && data.data && data.data.length > 0) {
-                        for (var infoIndex = 0; infoIndex < data.data.length; infoIndex++) {
+                if (data && data.data && data.data.length > 0) {
+                    for (var infoIndex = 0; infoIndex < data.data.length; infoIndex++) {
 
-                            if (data.data[infoIndex].person !== null && data.data[infoIndex].person !== undefined) {
-                                $scope.currentlySharedUserIds.push(data.data[infoIndex].person.id);
-                            } 
+                        if (data.data[infoIndex].person !== null && data.data[infoIndex].person !== undefined) {
+                            $scope.currentlySharedUserIds.push(data.data[infoIndex].person.id);
                         }
                     }
+                }
 
-                }).
-                error(function (data, status, headers, config) {
-                    $scope.$hide();
-                    $scope.popup.loading = false;
-                });
+            }).error(function (data, status, headers, config) {
+                $scope.$hide();
+                $scope.popup.loading = false;
+            });
 
             /**
              * Change permission of a user
@@ -328,7 +341,7 @@ angular.module('activitiModeler')
 
                         } else if (info.person.email) {
                             delete $scope.popup.added[info.person.email];
-                        } 
+                        }
                     }
 
                     if (info.person) {
@@ -443,17 +456,15 @@ angular.module('activitiModeler')
 
                 var putUrl = ACTIVITI.CONFIG.contextRoot + '/rest/models/' + $scope.popup.model.id + '/share-info';
 
-                $http({method: 'PUT', url: putUrl, data: shareData}).
-                    success(function (data, status, headers, config) {
-                        $scope.$hide();
+                $http({method: 'PUT', url: putUrl, data: shareData}).success(function (data, status, headers, config) {
+                    $scope.$hide();
 
-                        $scope.popup.loading = false;
-                        $scope.addAlertPromise($translate(popupType + '.ALERT.SHARE-CONFIRM'), 'info');
-                    }).
-                    error(function (data, status, headers, config) {
-                        $scope.$hide();
-                        $scope.popup.loading = false;
-                    });
+                    $scope.popup.loading = false;
+                    $scope.addAlertPromise($translate(popupType + '.ALERT.SHARE-CONFIRM'), 'info');
+                }).error(function (data, status, headers, config) {
+                    $scope.$hide();
+                    $scope.popup.loading = false;
+                });
 
             };
 
@@ -465,4 +476,4 @@ angular.module('activitiModeler')
                     $scope.$hide();
                 }
             };
-}]);
+        }]);

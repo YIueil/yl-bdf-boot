@@ -67,15 +67,20 @@
                 </div>
             </div>
 			<div class="item fadein" ng-repeat="process in model.processes.data track by $index">
-				<div class="item-box" ng-style="{'background-image': 'url(\'' + config.contextRoot + '/rest/models/' + process.id + '/thumbnail?version=' + imageVersion + '\')'}" ng-click="showProcessDetails(process);">
+				<div class="item-box" ng-style="{'background-image': 'url(\'' + config.contextRoot + '/rest/models/' + process.id + '/thumbnail?version=' + imageVersion + '\')'}" ng-click="editProcessDetails(process);">
 					<div class="actions">
-						<span class="badge">v{{process.version}}</span>
 						<div class="btn-group pull-right">
-							<button id="detailsButton" type="button" ng-click="showProcessDetails(process); $event.stopPropagation();" class="btn btn-default" title="{{'PROCESS.ACTION.DETAILS' | translate}}">
-								<i class="glyphicon glyphicon-search"></i>
-							</button>
 							<button id="editButton" type="button" ng-click="editProcessDetails(process); $event.stopPropagation();" class="btn btn-default" title="{{'PROCESS.ACTION.OPEN-IN-EDITOR' | translate}}">
 								<i class="glyphicon glyphicon-edit"></i>
+							</button>
+							<button id="copyButton" type="button" ng-click="copyProcessDetails(process); $event.stopPropagation();" class="btn btn-default" title="{{'PROCESS.ACTION.DUPLICATE' | translate}}">
+								<i class="editor-icon editor-icon-copy"></i>
+							</button>
+							<button id="exportButton" type="button" ng-click="exportProcessDetails(process); $event.stopPropagation();" class="btn btn-default" title="{{'PROCESS.ACTION.EXPORT_BPMN20' | translate}}">
+								<i class="glyphicon glyphicon-save"></i>
+							</button>
+							<button id="delButton" type="button" ng-click="deleteProcessDetails(process); $event.stopPropagation();" class="btn btn-default warning" title="{{'PROCESS.ACTION.DELETE' | translate}}">
+								<i class="glyphicon glyphicon-trash"></i>
 							</button>
 						</div>
 					</div>
