@@ -1,5 +1,5 @@
 server:
-  port: 8277
+  port: 18277
 spring:
   datasource:
     url: jdbc:postgresql://192.168.193.234:5432/test

@@ -29,14 +29,11 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamReader;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Slf4j
 @RestController
-public class ModelsController {
+public class ModelsController implements BaseController{
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -124,6 +121,32 @@ public class ModelsController {
     public Model getModel(@PathVariable String modelId) {
         Optional<Model> optional = this.modelRepository.findById(modelId);
         return optional.orElseThrow();
+    }
+
+    /**
+     * 根据modelId删除流程模型
+     *
+     * @param modelId 模型id
+     * @return Model
+     */
+    @RequestMapping(value = "/rest/models/{modelId}", method = RequestMethod.DELETE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public String deleteModel(@PathVariable String modelId) {
+        this.modelRepository.deleteById(modelId);
+        return success();
+    }
+
+    /**
+     * 根据modelId查询流程模型的关联情况
+     *
+     * @param modelId 模型id
+     * @return Model
+     */
+    @RequestMapping(value = "/rest/models/{modelId}/parent-relations", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<Object> getModelRelation(@PathVariable String modelId) {
+        // TODO 实现获取流程模型的使用情况
+        return new ArrayList<>();
     }
 
     /**
