@@ -133,16 +133,7 @@ public class BpmnDisplayJsonConverter
                 List<GraphicInfo> flowInfo = model.getFlowLocationGraphicInfo(flow.getId());
                 if (CollectionUtils.isNotEmpty(flowInfo))
                 {
-                    ArrayNode waypointArray = this.objectMapper.createArrayNode();
-                    for (GraphicInfo graphicInfo : flowInfo)
-                    {
-                        ObjectNode pointNode = this.objectMapper.createObjectNode();
-                        fillGraphicInfo(pointNode, graphicInfo, false);
-                        waypointArray.add(pointNode);
-                        fillDiagramInfo(graphicInfo, diagramInfo);
-                    }
-                    elementNode.putIfAbsent("waypoints", waypointArray);
-
+                    createWaypointArray(diagramInfo, elementNode, flowInfo);
                     flowArray.add(elementNode);
                 }
             }
@@ -177,6 +168,18 @@ public class BpmnDisplayJsonConverter
                 }
             }
         }
+    }
+
+    private void createWaypointArray(GraphicInfo diagramInfo, ObjectNode elementNode, List<GraphicInfo> flowInfo) {
+        ArrayNode waypointArray = this.objectMapper.createArrayNode();
+        for (GraphicInfo graphicInfo : flowInfo)
+        {
+            ObjectNode pointNode = this.objectMapper.createObjectNode();
+            fillGraphicInfo(pointNode, graphicInfo, false);
+            waypointArray.add(pointNode);
+            fillDiagramInfo(graphicInfo, diagramInfo);
+        }
+        elementNode.putIfAbsent("waypoints", waypointArray);
     }
 
     protected void processArtifacts(Collection<Artifact> artifactList, BpmnModel model, ArrayNode elementArray, ArrayNode flowArray, GraphicInfo diagramInfo) {
@@ -216,14 +219,7 @@ public class BpmnDisplayJsonConverter
     protected void fillWaypoints(String id, BpmnModel model, ObjectNode elementNode, GraphicInfo diagramInfo) {
         List<GraphicInfo> flowInfo = model.getFlowLocationGraphicInfo(id);
         if (flowInfo != null) {
-            ArrayNode waypointArray = this.objectMapper.createArrayNode();
-            for (GraphicInfo graphicInfo : flowInfo) {
-                ObjectNode pointNode = this.objectMapper.createObjectNode();
-                fillGraphicInfo(pointNode, graphicInfo, false);
-                waypointArray.add(pointNode);
-                fillDiagramInfo(graphicInfo, diagramInfo);
-            }
-            elementNode.putIfAbsent("waypoints", waypointArray);
+            createWaypointArray(diagramInfo, elementNode, flowInfo);
         }
     }
 

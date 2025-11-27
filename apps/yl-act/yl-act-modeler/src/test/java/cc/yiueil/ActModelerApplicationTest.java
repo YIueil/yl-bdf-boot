@@ -46,13 +46,15 @@ class ActModelerApplicationTest {
 
     @Test
     public void testUser1Complete() {
+        String userId = "2";
         List<Task> list = taskService.createTaskQuery()
-                .taskAssignee("1")
+                .taskAssignee(userId)
                 .active()
                 .list();
         System.out.println(list);
         if (!list.isEmpty()) {
             taskService.complete(list.get(0).getId());
+            System.out.println("完成了用户:" + userId + "的任务" );
         }
     }
 }
