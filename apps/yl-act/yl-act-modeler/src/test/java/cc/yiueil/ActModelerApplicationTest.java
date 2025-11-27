@@ -40,13 +40,13 @@ class ActModelerApplicationTest {
     @Test
     public void testCreateProcess() {
         Map<String, Object> variables = new HashMap<>();
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("TASK_3065547b4b1f4c50aa89bcacdb47093833", variables);
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("Process_0yukhv2cc222", variables);
         System.out.println(processInstance);
     }
 
     @Test
     public void testUser1Complete() {
-        String userId = "2";
+        String userId = "李四";
         List<Task> list = taskService.createTaskQuery()
                 .taskAssignee(userId)
                 .active()
