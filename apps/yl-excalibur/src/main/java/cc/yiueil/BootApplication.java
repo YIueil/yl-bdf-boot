@@ -14,8 +14,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * @date 2025/11/14 15:57
  */
 @EnableScheduling
-@EntityScan(basePackages = {"cc.yiueil.entity", "cc.yiueil2.entity"})
-@EnableJpaRepositories(basePackages = {"cc.yiueil.repository", "cc.yiueil2.repository"})
+@EntityScan(basePackages = {"cc.yiueil.entity"})
+@EnableJpaRepositories(basePackages = {"cc.yiueil.repository"})
 @SpringBootApplication
 public class BootApplication {
     public static void main(String[] args) {
