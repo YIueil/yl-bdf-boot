@@ -20,7 +20,7 @@ public class JwtProperties {
 
 
     /**
-     * 前端jwt请求头自定义名称
+     * 前端 jwt 请求头自定义名称
      */
     private String headerParamsName = "yl-token";
 
@@ -37,5 +37,5 @@ public class JwtProperties {
     /**
      * 排除的路径模式, 例如 /login, /static/**
      */
-    private String[] excludePathPatterns = {};
+    private String[] excludePathPatterns = {"/**/login", "/**/register", "/**/aliPay/notify_url", "/statics/**"};
 }

@@ -30,7 +30,7 @@ public class JwtConfiguration {
     @Bean
     @ConditionalOnMissingBean(AuthenticateInterceptor.class)
     public AuthenticateInterceptor authenticateInterceptor(OrupService orupService, JwtProperties jwtProperties) {
-        // 这里可以根据properties创建一个定制化的拦截器实例
+        // 这里可以根据 properties 创建一个定制化的拦截器实例
         return new AuthenticateInterceptor(orupService, jwtProperties);
     }
 

@@ -30,30 +30,30 @@
     <config id="getUserApplicationFunctions">
         <sql><![CDATA[
             select f.id,
-                   f.applicationid,
-                   f.createtime,
-                   f.createuserid,
+                   f.application_id as applicationId,
+                   f.create_time as createTime,
+                   f.create_user_id as createUserId,
                    f.description,
                    f.guid,
                    f.method,
-                   f.modifytime,
+                   f.modify_time as modifyTime,
                    f.name,
-                   f.parentid,
+                   f.parent_id as parentId,
                    f.type,
                    f.url,
-                   f.rightname
+                   f.right_name as rightName
             from yl_acc.function f
-                     left join yl_acc.role_function rf on rf.functionid = f.id
-                     left join yl_acc.user_role ur on ur.roleid = rf.roleid
-            where f.applicationid = :applicationId
-              and ur.userid = :userId
+                     left join yl_acc.role_function rf on rf.function_id = f.id
+                     left join yl_acc.user_role ur on ur.role_id = rf.role_id
+            where f.application_id = :applicationId
+              and ur.user_id = :userId
         ]]></sql>
         <params>
             <param name="userId"/>
             <param name="applicationId"/>
         </params>
         <endSql><![CDATA[
-            order by f.createtime desc
+            order by f.create_time desc
         ]]></endSql>
     </config>
 

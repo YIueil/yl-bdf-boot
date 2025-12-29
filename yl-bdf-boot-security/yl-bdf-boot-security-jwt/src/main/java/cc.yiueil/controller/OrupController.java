@@ -566,7 +566,7 @@ public class OrupController implements LoggedController {
     }
 
     private List<Tree<Long>> buildFunctionTree(List<FunctionDto> functionDtoList) {
-        return TreeUtils.build(functionDtoList.stream().map(functionDto -> {
+        List<TreeNode<Long>> list = functionDtoList.stream().map(functionDto -> {
             Map<String, Object> extra = new HashMap<>(functionDtoList.size());
             extra.put("id", functionDto.getId());
             extra.put("guid", functionDto.getGuid());
@@ -579,7 +579,8 @@ public class OrupController implements LoggedController {
             extra.put("type", functionDto.getType());
             extra.put("url", functionDto.getUrl());
             return new TreeNode<>(functionDto.getId(), functionDto.getParentId(), functionDto.getName(), 1, extra);
-        }).collect(Collectors.toList()), 0L);
+        }).collect(Collectors.toList());
+        return TreeUtils.build(list, 0L);
     }
 
 
