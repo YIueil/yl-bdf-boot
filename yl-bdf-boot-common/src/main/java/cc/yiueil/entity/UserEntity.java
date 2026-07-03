@@ -21,10 +21,10 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "user", schema = "yl_acc")
+@SequenceGenerator(name = "userEntitySeqGenerator", schema = "yl_acc", sequenceName = "s_user", allocationSize = 1)
 public class UserEntity implements User<Long>, BaseEntity<Long> {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generator")
-    @SequenceGenerator(name = "generator", schema = "yl_acc", sequenceName = "s_user", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userEntitySeqGenerator")
     private Long id;
     private String guid;
     @Column(unique = true)

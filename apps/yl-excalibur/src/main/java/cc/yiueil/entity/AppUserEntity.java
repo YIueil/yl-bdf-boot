@@ -13,13 +13,13 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "t_user")
+@SequenceGenerator(name = "appUserEntitySeqGenerator", sequenceName = "s_user", allocationSize = 1)
 public class AppUserEntity implements BaseEntity<Long>, Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generator")
-    @SequenceGenerator(name = "userEntityGenerator", sequenceName = "s_user", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "appUserEntitySeqGenerator")
     private Long id;
 
     @Column(name = "guid")

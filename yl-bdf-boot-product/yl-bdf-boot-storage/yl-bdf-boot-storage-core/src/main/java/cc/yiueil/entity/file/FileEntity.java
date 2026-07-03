@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Table(name = "file", schema = "yl_inst", indexes = {
         @Index(name = "idx_file_guid_unq", columnList = "guid", unique = true)
 })
+@SequenceGenerator(name = "fileEntitySeqGenerator", schema = "yl_inst", sequenceName = "s_file", allocationSize = 1)
 @Getter
 @Setter
 @ToString
@@ -18,8 +19,7 @@ import java.time.LocalDateTime;
 public class FileEntity implements BaseEntity<Long> {
     //region 公共属性
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generator")
-    @SequenceGenerator(name = "generator", schema = "yl_inst", sequenceName = "s_file", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "fileEntitySeqGenerator")
     private Long id;
     private String guid;
 

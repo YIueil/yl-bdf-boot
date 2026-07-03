@@ -18,10 +18,10 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "role_function", schema = "yl_acc")
+@SequenceGenerator(name = "roleFunctionEntitySeqGenerator", schema = "yl_acc", sequenceName = "s_role_function", allocationSize = 1)
 public class RoleFunctionEntity implements BaseEntity<Long> {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generator")
-    @SequenceGenerator(name = "generator", schema = "yl_acc", sequenceName = "s_role_function", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "roleFunctionEntitySeqGenerator")
     private Long id;
     private String guid;
     private Long roleId;

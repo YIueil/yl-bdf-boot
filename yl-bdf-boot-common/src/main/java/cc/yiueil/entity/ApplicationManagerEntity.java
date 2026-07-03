@@ -16,10 +16,10 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "application_manager", schema = "yl_acc")
+@SequenceGenerator(name = "applicationManagerEntitySeqGenerator", schema = "yl_acc", sequenceName = "s_application_manager", allocationSize = 1)
 public class ApplicationManagerEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generator")
-    @SequenceGenerator(name = "generator", schema = "yl_acc", sequenceName = "s_application_manager", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "applicationManagerEntitySeqGenerator")
     private Long id;
     private String guid;
     private Long applicationId;

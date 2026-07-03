@@ -18,10 +18,10 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "permission", schema = "yl_acc")
+@SequenceGenerator(name = "permissionEntitySeqGenerator", schema = "yl_acc", sequenceName = "s_permission", allocationSize = 1)
 public class PermissionEntity implements BaseEntity<Long> {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generator")
-    @SequenceGenerator(name = "generator", schema = "yl_acc", sequenceName = "s_permission", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "permissionEntitySeqGenerator")
     private Long id;
     private String guid;
     private String name;

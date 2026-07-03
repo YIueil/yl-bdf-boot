@@ -18,10 +18,10 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "function", schema = "yl_acc")
+@SequenceGenerator(name = "functionEntitySeqGenerator", schema = "yl_acc", sequenceName = "s_function", allocationSize = 1)
 public class FunctionEntity implements BaseEntity<Long> {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generator")
-    @SequenceGenerator(name = "generator", schema = "yl_acc", sequenceName = "s_function", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "functionEntitySeqGenerator")
     private Long id;
     private String guid;
     private String name;

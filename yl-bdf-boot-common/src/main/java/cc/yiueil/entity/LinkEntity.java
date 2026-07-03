@@ -18,10 +18,10 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "link", schema = "yl_acc")
+@SequenceGenerator(name = "linkEntitySeqGenerator", schema = "yl_acc", sequenceName = "s_link", allocationSize = 1)
 public class LinkEntity implements BaseEntity<Long> {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generator")
-    @SequenceGenerator(name = "generator", schema = "yl_acc", sequenceName = "s_link", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "linkEntitySeqGenerator")
     private Long id;
     private String guid;
     private String name;

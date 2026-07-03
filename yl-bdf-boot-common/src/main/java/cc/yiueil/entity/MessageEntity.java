@@ -19,10 +19,10 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "message", schema = "yl_acc")
+@SequenceGenerator(name = "messageEntitySeqGenerator", schema = "yl_acc", sequenceName = "s_message", allocationSize = 1)
 public class MessageEntity implements BaseEntity<Long>, SortAble {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generator")
-    @SequenceGenerator(name = "generator", schema = "yl_acc", sequenceName = "s_message", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "messageEntitySeqGenerator")
     private Long id;
     private String guid;
     private Long senderId;

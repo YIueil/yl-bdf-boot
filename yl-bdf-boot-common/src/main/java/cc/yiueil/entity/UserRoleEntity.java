@@ -17,10 +17,10 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "user_role", schema = "yl_acc")
+@SequenceGenerator(name = "userRoleEntitySeqGenerator", schema = "yl_acc", sequenceName = "s_user_role", allocationSize = 1)
 public class UserRoleEntity implements BaseEntity<Long> {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generator")
-    @SequenceGenerator(name = "generator", schema = "yl_acc", sequenceName = "s_user_role", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userRoleEntitySeqGenerator")
     private Long id;
     private String guid;
     private Long userId;
